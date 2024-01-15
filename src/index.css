@@ -1,3 +1,21 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer base {
+  html {
+    @apply text-black;
+  }
+
+  p {
+    @apply font-body text-sm;
+  }
+
+  button {
+    @apply flex items-center justify-center h-10 px-14
+            mb-2 bg-secondary text-white w-20
+            rounded-3xl hover:rounded-xl 
+            hover:shadow-md transition-all duration-300 
+            cursor-pointer;
+  }
+}
