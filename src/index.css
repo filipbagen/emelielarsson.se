@@ -7,15 +7,39 @@
     @apply text-black;
   }
 
+  h1 {
+    @apply text-6xl;
+  }
+
+  h3 {
+    @apply text-base;
+  }
+
+  h4 {
+    @apply text-sm;
+  }
+
   p {
-    @apply font-body text-sm;
+    @apply font-body text-sm font-normal;
   }
 
   button {
     @apply flex items-center justify-center h-10 px-14
             mb-2 bg-secondary text-white w-20
             rounded-3xl hover:rounded-xl 
-            hover:shadow-md transition-all duration-300 
+            hover:shadow-md transition-all duration-200 
             cursor-pointer;
+  }
+
+  h1,
+  h2,
+  h3 {
+    @apply font-extrabold;
+  }
+
+  h4,
+  h5,
+  h6 {
+    @apply font-semibold;
   }
 }
