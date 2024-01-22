@@ -8,7 +8,7 @@ import ProjectCard from '../components/ProjectCard.tsx';
 
 const ProjectPage = () => {
   return (
-    <div className="flex flex-col gap-24 h-min-[90dvh]" id="project">
+    <div className="flex flex-col gap-24 min-h-[90dvh] mb-20" id="project">
       <div className="flex flex-col gap-5">
         <h1>Projekt</h1>
         <p>

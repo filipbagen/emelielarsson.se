@@ -2,7 +2,7 @@ import React from 'react';
 
 const Contact = () => {
   return (
-    <div className="flex flex-col gap-24 h-min-[90dvh]" id="contact">
+    <div className="flex flex-col gap-24 min-h-[90dvh]" id="contact">
       <div className="flex flex-col gap-5">
         <h1>Kontakt</h1>
         <p>
