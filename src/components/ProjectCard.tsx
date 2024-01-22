@@ -16,6 +16,7 @@ const ProjectCard = ({ project }) => {
       <div className="flex gap-4">
         {project.tags.map((tag: string) => (
           //   <Button variant="primary">{tag}</Button>
+          // TODO: add key
           <Button variant="ghost" href="https://example.com">
             {tag}
           </Button>
