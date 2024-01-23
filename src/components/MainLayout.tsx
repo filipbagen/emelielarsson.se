@@ -3,7 +3,7 @@ import Nav from './Nav.tsx';
 
 const MainLayout = ({ children }) => {
   return (
-    <div className="flex flex-col items-center bg-primary w-screen min-h-screen">
+    <div className="flex flex-col items-center w-screen min-h-screen">
       <div className="w-full max-w-[742px] p-8">
         <Nav />
         {children}
