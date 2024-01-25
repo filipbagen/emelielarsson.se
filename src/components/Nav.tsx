@@ -3,7 +3,7 @@ import { Link } from 'react-scroll';
 
 const Nav = () => {
   const linkClass =
-    "relative hover:cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-secondary after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left after:rounded-full font-semibold";
+    "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-secondary after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left after:rounded-full font-semibold";
 
   return (
     <div className="flex gap-8 align justify-end items-center">
