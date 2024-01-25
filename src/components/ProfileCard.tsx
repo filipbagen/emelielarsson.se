@@ -8,9 +8,9 @@ const ProfileCard = () => {
     <div className="flex justify-center h-[90dvh]">
       <div className="flex items-center gap-8">
         {/* bg shape */}
-        <div className="w-4/6 h-[90%] bg-white absolute top-0 right-0 shadow-inner-xl rounded-bl-[180px] -z-10"></div>
+        <div className="w-4/6 h-[90%] bg-white absolute dark:bg-secondaryDark top-0 right-0 shadow-inner-xl rounded-bl-[180px] -z-10"></div>
 
-        <div className="flex flex-col gap-8 items-center rounded-xl shadow-lg bg-[#F8F3F0] px-10 py-8">
+        <div className="flex flex-col gap-8 items-center rounded-xl shadow-lg bg-[#F8F3F0] dark:bg-black px-10 py-8">
           <img
             className="rounded-full object-cover w-48 h-48"
             src="/assets/img/profile.jpg"
