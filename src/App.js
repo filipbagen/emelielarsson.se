@@ -3,19 +3,23 @@ import './App.css';
 // data
 import data from '../src/data/data.json';
 
+// react
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
+
 // components
-import ProfileCard from '../src/components/ProfileCard.tsx';
-import ProjectPage from '../src/components/ProjectPage.tsx';
-import Contact from './components/Contact.tsx';
-import MainLayout from './components/MainLayout.tsx';
+import Home from './components/Home.tsx';
+import ResumePage from './components/ResumePage.tsx';
+import ProjectPage from './components/ProjectPage.tsx';
 
 const App = () => {
   return (
-    <MainLayout>
-      <ProfileCard />
-      <ProjectPage />
-      <Contact />
-    </MainLayout>
+    <BrowserRouter>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="resume" element={<ResumePage />} />
+        <Route path="/projects" element={<ProjectPage />} />
+      </Routes>
+    </BrowserRouter>
   );
 };
 
