@@ -1,16 +1,14 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 const Contact = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex flex-col gap-24 min-h-[90dvh]" id="contact">
       <div className="flex flex-col gap-5">
-        <h1>Kontakt</h1>
-        <p>
-          I'm a paragraph. Click here to add your own text and edit me. It's
-          easy. Just click “Edit Text” or double click me to add your own
-          content and make changes to the font. I'm a great place for you to
-          tell a story and let your users know a little more about you.
-        </p>
+        <h1>{t('contact.title')}</h1>
+        <p>{t('contact.body')}</p>
       </div>
     </div>
   );

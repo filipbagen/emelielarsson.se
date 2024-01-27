@@ -1,9 +1,12 @@
 import React from 'react';
+import { useTranslation } from 'react-i18next';
 
 // components
 import Button from '../components/Button.tsx';
 
 const ProfileCard = () => {
+  const { t } = useTranslation();
+
   return (
     <div className="flex justify-center h-[90dvh]">
       <div className="flex items-center gap-8">
@@ -25,30 +28,16 @@ const ProfileCard = () => {
             {/* Horizontal line */}
             <div className="h-1 w-14 rounded-full bg-secondary"></div>
 
-            <p className="text-center whitespace-nowrap">
-              Skribent, språkgranskare, översättare
-            </p>
+            <p className="text-center whitespace-nowrap">{t('intro.title')}</p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 w-82">
-          <h1>Hello</h1>
-          <h4>Here's who I am & what I do</h4>
-          <p>
-            Jag är en kreativ språknörd med ett stort intresse för kommunikation
-            och böcker.
-          </p>
-          <p>
-            Jag har tidigare arbetat inom artikelskrivande, textproduktion,
-            översättning och foto. Några av de jobb jag har gjort hittar du
-            längre ner.
-          </p>
-          <p>
-            Mina 4 år på universitetet har resulterat i två kandidatexamen från
-            Språk- och kommunikationsprogrammet och en hel del kurser i
-            litteraturvetenskap.
-          </p>
-          <button>CV</button>
+          <h1>{t('intro.heading')}</h1>
+
+          <h4>{t('intro.sub-heading')}</h4>
+          <p>{t('intro.body')}</p>
+          <button>{t('nav.resume')}</button>
         </div>
       </div>
     </div>

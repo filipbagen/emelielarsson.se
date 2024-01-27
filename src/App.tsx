@@ -1,7 +1,8 @@
 import './App.css';
+import { Suspense } from 'react';
 
 // data
-import data from '../src/data/data.json';
+import data from './data/data.json';
 
 // react
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
@@ -13,12 +14,14 @@ import ProjectPage from './components/ProjectPage.tsx';
 
 const App = () => {
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="resume" element={<ResumePage />} />
-      </Routes>
-    </BrowserRouter>
+    <Suspense fallback="loading">
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="resume" element={<ResumePage />} />
+        </Routes>
+      </BrowserRouter>
+    </Suspense>
   );
 };
 

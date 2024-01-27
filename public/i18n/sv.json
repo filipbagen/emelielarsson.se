@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Hem",
+    "project": "Projekt",
+    "resume": "CV",
+    "contact": "Kontakt"
+  },
+  "intro": {
+    "heading": "Hej",
+    "sub-heading": "Det här är vad jag gör",
+    "body": "Jag är en kreativ språknörd med ett stort intresse för kommunikation och böcker. Jag har tidigare arbetat inom artikelskrivande, textproduktion, översättning och foto. Några av de jobb jag har gjort hittar du längre ner. Mina 4 år på universitetet har resulterat i två kandidatexamen från Språk- och kommunikationsprogrammet och en hel del kurser i litteraturvetenskap.",
+    "title": "Skribent, språkgranskare, översättare"
+  },
+  "projects": {
+    "title": "Projekt",
+    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre.",
+    "list": [
+      {
+        "title": "Projekt namn 1",
+        "name": "Projekt namn 1",
+        "tags": ["Webbutveckling", "React", "i18n"],
+        "description": "Projekt beskrivning här."
+      },
+      {
+        "title": "Projekt namn 2",
+        "name": "Projekt namn 2",
+        "tags": ["Språk", "Översättning", "Korrekturläsning"],
+        "description": "Projekt beskrivning här."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Kontakt",
+    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+  }
+}

@@ -1,0 +1,36 @@
+{
+  "nav": {
+    "home": "Home",
+    "project": "Projects",
+    "resume": "Resume",
+    "contact": "Contact"
+  },
+  "intro": {
+    "heading": "Hello",
+    "sub-heading": "Here's who I am & what I do",
+    "body": "I am a creative language enthusiast with a great interest in communication and books. I have previously worked in article writing, text production, translation, and photography. Some of the jobs I have done can be found further down. My 4 years at university have resulted in two bachelor's degrees from the Language and Communication program and a number of courses in literary studies.",
+    "title": "Writer, language editor, translator"
+  },
+  "projects": {
+    "title": "Projects",
+    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.",
+    "list": [
+      {
+        "title": "Project name 1",
+        "name": "Project name",
+        "tags": ["Localization", "Translation", "Editing"],
+        "description": "Project description here."
+      },
+      {
+        "title": "Project name 2",
+        "name": "Another Project name",
+        "tags": ["Web Development", "React", "i18n"],
+        "description": "Another project description here."
+      }
+    ]
+  },
+  "contact": {
+    "title": "Contact",
+    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you."
+  }
+}
