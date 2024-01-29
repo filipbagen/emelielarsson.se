@@ -32,5 +32,52 @@
   "contact": {
     "title": "Contact",
     "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you."
+  },
+  "resume": {
+    "title": "Resume",
+    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.",
+    "resume": "Download Resume",
+    "educationHeader": "Utbildning",
+    "experienceHeader": "Erfarenhet",
+    "skillsHeader": "Skills",
+    "education": [
+      {
+        "header": "Utbildning",
+        "year": "2023 - 2024",
+        "universityName": "Stockholm University",
+        "degreeLevel": "Publishing",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      },
+      {
+        "header": "Utbildning",
+        "year": "2022 - 2023",
+        "universityName": "Linköping University",
+        "degreeLevel": "Literary Science",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      },
+      {
+        "header": "Utbildning",
+        "year": "2019 - 2022",
+        "universityName": "Mälardalen University",
+        "degreeLevel": "Degree of Bachelor of Arts in English and Swedish Language and Communication",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      }
+    ],
+    "experience": [
+      {
+        "year": "2020 - 2021",
+        "position": "Position",
+        "company": "Företag",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      }
+    ],
+    "skills": [
+      "Language",
+      "Translation",
+      "Editing",
+      "Web Development",
+      "React",
+      "i18n"
+    ]
   }
 }

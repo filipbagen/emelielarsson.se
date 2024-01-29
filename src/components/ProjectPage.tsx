@@ -12,8 +12,6 @@ export interface Project {
 
 const ProjectPage: React.FC = () => {
   const { t } = useTranslation();
-
-  // Assert the correct type for the translation return value
   const projects = t('projects.list', { returnObjects: true }) as Project[];
 
   return (

@@ -32,5 +32,52 @@
   "contact": {
     "title": "Kontakt",
     "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+  },
+  "resume": {
+    "title": "CV",
+    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre.",
+    "resume": "Ladda ner CV",
+    "educationHeader": "Utbildning",
+    "experienceHeader": "Erfarenhet",
+    "skillsHeader": "Kunskaper",
+    "education": [
+      {
+        "header": "Utbildning",
+        "year": "2023 - 2024",
+        "universityName": "Stockholms Universitet",
+        "degreeLevel": "Förlagskunskap",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      },
+      {
+        "header": "Utbildning",
+        "year": "2022 - 2023",
+        "universityName": "Linköpings Universitet",
+        "degreeLevel": "Litteraturvetenskap",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      },
+      {
+        "header": "Utbildning",
+        "year": "2019 - 2022",
+        "universityName": "Mälardales Universitet",
+        "degreeLevel": "Kandidatexamen i engelska och svenska språk och kommunikation",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      }
+    ],
+    "experience": [
+      {
+        "year": "2020 - 2021",
+        "position": "Position",
+        "company": "Företag",
+        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+      }
+    ],
+    "skills": [
+      "Språk",
+      "Översättning",
+      "Korrekturläsning",
+      "Webbutveckling",
+      "React",
+      "i18n"
+    ]
   }
 }
