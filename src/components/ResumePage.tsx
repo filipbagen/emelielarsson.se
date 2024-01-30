@@ -77,11 +77,11 @@ const ResumePage = () => {
             <button>{t('resume.resume')}</button>
           </div>
           {educationList.map((edu) => (
-            <div
-              className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out filter-none"
-              key={uuidv4()}
-            >
-              <div className="flex justify-between bg-white dark:bg-black p-14 rounded-lg">
+            <div className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out filter-none">
+              <div
+                key={uuidv4()}
+                className="flex justify-between bg-white dark:bg-black p-14 rounded-lg"
+              >
                 <div className="flex flex-col gap-2 w-full">
                   <h3 className="text-secondary">{edu.year}</h3>
                   <p>{edu.universityName.toUpperCase()}</p>
@@ -99,11 +99,11 @@ const ResumePage = () => {
         <div className="flex flex-col gap-4">
           <h2>{resumeData.experienceHeader}</h2>
           {experienceList.map((exp) => (
-            <div
-              className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out"
-              key={uuidv4()}
-            >
-              <div className="flex justify-between bg-white dark:bg-black p-14 rounded-lg">
+            <div className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out">
+              <div
+                key={uuidv4()}
+                className="flex justify-between bg-white dark:bg-black p-14 rounded-lg"
+              >
                 <div className="flex flex-col gap-2 w-full">
                   <h3 className="text-secondary">{exp.year}</h3>
                   <p>{exp.position.toUpperCase()}</p>
