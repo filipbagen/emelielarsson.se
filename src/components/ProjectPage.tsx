@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ProjectCard from '../components/ProjectCard.tsx';
-
+import SectionLayout from '../components/SectionLayout.tsx';
 import { v4 as uuidv4 } from 'uuid';
 
 // Export the Project interface so it can be imported in other components
@@ -16,19 +16,21 @@ const ProjectPage: React.FC = () => {
   const { t } = useTranslation();
   const projects = t('projects.list', { returnObjects: true }) as Project[];
 
-  return (
-    <div className="flex flex-col gap-24 min-h-[90dvh] mb-20" id="project">
-      <div className="flex flex-col gap-5">
-        <h1>{t('projects.title')}</h1>
-        <p>{t('projects.body')}</p>
-      </div>
+  // Prepare the content for the section
+  const projectCards = (
+    <>
+      {projects.map((project) => (
+        <ProjectCard project={project} key={uuidv4()} />
+      ))}
+    </>
+  );
 
-      <div className="flex flex-col gap-16 justify-center">
-        {projects.map((project) => (
-          <ProjectCard project={project} key={uuidv4()} />
-        ))}
-      </div>
-    </div>
+  return (
+    <SectionLayout
+      title={t('projects.title')}
+      description={t('projects.body')}
+      content={projectCards}
+    />
   );
 };
 
