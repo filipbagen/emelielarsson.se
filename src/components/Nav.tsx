@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
-import { LANGUAGES } from './constants/index.ts';
 
 const Nav = () => {
   const { i18n, t } = useTranslation();
