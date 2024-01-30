@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import ProjectCard from '../components/ProjectCard.tsx';
 
+import { v4 as uuidv4 } from 'uuid';
+
 // Export the Project interface so it can be imported in other components
 export interface Project {
   title: string;
@@ -22,8 +24,8 @@ const ProjectPage: React.FC = () => {
       </div>
 
       <div className="flex flex-col gap-16 justify-center">
-        {projects.map((project, index) => (
-          <ProjectCard project={project} key={index} />
+        {projects.map((project) => (
+          <ProjectCard project={project} key={uuidv4()} />
         ))}
       </div>
     </div>

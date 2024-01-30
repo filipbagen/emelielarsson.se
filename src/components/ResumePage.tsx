@@ -2,6 +2,8 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import MainLayout from '../components/MainLayout.tsx';
 
+import { v4 as uuidv4 } from 'uuid';
+
 // Define the interfaces for the structure of your resume data
 interface EducationEntry {
   year: string;
@@ -15,10 +17,6 @@ interface ExperienceEntry {
   position: string;
   company: string;
   body: string;
-}
-
-interface SkillEntry {
-  name: string;
 }
 
 // Define the ResumeData interface that includes education and experience arrays
@@ -79,7 +77,10 @@ const ResumePage = () => {
             <button>{t('resume.resume')}</button>
           </div>
           {educationList.map((edu) => (
-            <div className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out filter-none">
+            <div
+              className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out filter-none"
+              key={uuidv4()}
+            >
               <div className="flex justify-between bg-white dark:bg-black p-14 rounded-lg">
                 <div className="flex flex-col gap-2 w-full">
                   <h3 className="text-secondary">{edu.year}</h3>
@@ -98,7 +99,10 @@ const ResumePage = () => {
         <div className="flex flex-col gap-4">
           <h2>{resumeData.experienceHeader}</h2>
           {experienceList.map((exp) => (
-            <div className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out">
+            <div
+              className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out"
+              key={uuidv4()}
+            >
               <div className="flex justify-between bg-white dark:bg-black p-14 rounded-lg">
                 <div className="flex flex-col gap-2 w-full">
                   <h3 className="text-secondary">{exp.year}</h3>
@@ -119,7 +123,7 @@ const ResumePage = () => {
           <div className="hide opacity-0 blur translate-x-full transition-all duration-500 ease-in-out">
             <ul className="flex justify-between bg-white dark:bg-black p-14 rounded-lg list-disc">
               {skillsList.map((skill) => (
-                <li>{skill}</li>
+                <li key={uuidv4()}>{skill}</li>
               ))}
             </ul>
           </div>
