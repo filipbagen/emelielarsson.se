@@ -1,28 +1,36 @@
 import React from 'react';
 
-// Define a mapping of button styles to Tailwind classes
+// Define your style object
 const buttonStyles = {
   primary:
-    'flex items-center justify-center h-10 px-14 mb-2 bg-secondary text-white w-20 rounded-3xl hover:rounded-xl  hover:shadow-md transition-all duration-200 cursor-pointer',
-  secondary: 'bg-green-500 text-white py-2 px-4 rounded-md',
-  link: 'text-blue-500 underline py-2 px-4',
-  ghost:
-    'flex items-center justify-center h-10 px-14 mb-2 bg-[#F2F2F2] text-black w-20 rounded-3xl transition-all duration-200',
-  // ... add more styles as needed
+    'inline-flex items-center justify-center h-10 px-4 mb-2 bg-secondary text-white rounded-3xl hover:rounded-xl hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap',
+  secondary:
+    'inline-flex items-center justify-center h-10 px-4 mb-2 bg-[#F2F2F2] text-black rounded-3xl transition-all duration-200 whitespace-nowrap',
 };
 
-const Button = ({ children, variant = 'primary', href, ...props }) => {
-  const buttonClass = buttonStyles[variant] || buttonStyles.primary;
+interface ButtonProps {
+  variant: 'primary' | 'secondary'; // Assuming variant can only be 'primary' or 'secondary'
+  children: React.ReactNode;
+  onClick?: () => void; // Optional
+  href?: string; // Optional
+}
 
-  // Render a link or a button based on the presence of 'href'
+const Button: React.FC<ButtonProps> = ({
+  variant,
+  children,
+  onClick,
+  href,
+}) => {
+  const className = buttonStyles[variant] || buttonStyles.secondary;
+
   return href ? (
-    <a href={href} className={buttonClass} {...props}>
+    <a href={href} className={className} onClick={onClick}>
       {children}
     </a>
   ) : (
-    <p className={buttonClass} {...props}>
+    <div className={className} onClick={onClick}>
       {children}
-    </p>
+    </div>
   );
 };
 

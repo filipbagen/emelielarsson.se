@@ -32,12 +32,13 @@ const ProfileCard = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-4 w-82">
+        <div className="flex flex-col gap-4 w-82 items-start">
           <h1>{t('intro.heading')}</h1>
-
           <h4>{t('intro.sub-heading')}</h4>
           <p>{t('intro.body')}</p>
-          <button>{t('nav.resume')}</button>
+          <Button variant="primary" href="https://example.com">
+            {t('nav.resume')}
+          </Button>
         </div>
       </div>
     </div>

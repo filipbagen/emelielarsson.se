@@ -3,6 +3,7 @@ import { useTranslation } from 'react-i18next';
 import MainLayout from '../components/MainLayout.tsx';
 import SectionLayout from '../components/SectionLayout.tsx';
 import { v4 as uuidv4 } from 'uuid';
+import Button from '../components/Button.tsx';
 
 // Define the interfaces for the structure of your resume data
 interface EducationEntry {
@@ -78,7 +79,9 @@ const ResumePage = () => {
       <div className="flex flex-col gap-8">
         <div className="flex justify-between">
           <h2>{resumeData.educationHeader}</h2>
-          <button>{t('resume.resume')}</button>
+          <Button variant="primary" href="https://example.com">
+            {t('resume.resume')}
+          </Button>
         </div>
         {educationList.map((edu) => (
           <div className="hide opacity-0 blur -translate-x-full transition-all duration-500 ease-in-out filter-none">

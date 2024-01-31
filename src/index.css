@@ -23,13 +23,13 @@
     @apply font-body text-sm font-normal;
   }
 
-  button {
+  /* button {
     @apply flex items-center justify-center h-10 px-14
             mb-2 bg-secondary text-white w-20
             rounded-3xl hover:rounded-xl 
             hover:shadow-md transition-all duration-200 
             cursor-pointer;
-  }
+  } */
 
   h1,
   h2,

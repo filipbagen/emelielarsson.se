@@ -22,7 +22,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       <div className="flex gap-4">
         {project.tags.map((tag: string) => (
-          <Button variant="ghost" href="https://example.com" key={uuidv4()}>
+          <Button variant="secondary" key={uuidv4()}>
             {tag}
           </Button>
         ))}
