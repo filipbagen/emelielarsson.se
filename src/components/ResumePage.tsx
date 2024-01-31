@@ -40,20 +40,29 @@ const ResumePage = () => {
   const experienceList = resumeData.experience;
   const skillsList: string[] = resumeData.skills;
 
-  // js
   React.useEffect(() => {
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          entry.target.classList.remove(
-            'opacity-0',
-            'blur',
-            '-translate-x-full' // changed from 'translate-x-full'
-          );
-          entry.target.classList.add('opacity-100', 'translate-x-0', 'no-blur');
-        }
-      });
-    });
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.remove(
+              'opacity-0',
+              'blur',
+              '-translate-x-full'
+            );
+            entry.target.classList.add(
+              'opacity-100',
+              'translate-x-0',
+              'no-blur'
+            );
+          }
+        });
+      },
+      {
+        threshold: 0.5, // Adjust this to control when the animation starts
+        rootMargin: '-42px', // Optionally, adjust the root margin if needed
+      }
+    );
 
     const hiddenElements = document.querySelectorAll('.hide');
     hiddenElements.forEach((el) => observer.observe(el));
