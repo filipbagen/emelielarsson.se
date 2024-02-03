@@ -3,7 +3,7 @@ import React from 'react';
 // Define your style object
 const buttonStyles = {
   primary:
-    'inline-flex items-center justify-center h-10 px-4 bg-secondary text-white rounded-3xl hover:rounded-xl hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap',
+    'inline-flex items-center justify-center h-10 px-4 bg-secondary text-white rounded-3xl hover:rounded-xl hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap font-semibold',
   secondary:
     'inline-flex items-center justify-center h-10 px-4 bg-[#F2F2F2] text-black rounded-3xl transition-all duration-200 whitespace-nowrap',
 };

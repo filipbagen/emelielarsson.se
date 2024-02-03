@@ -26,6 +26,12 @@
         "name": "Projekt namn 2",
         "tags": ["Språk", "Översättning", "Korrekturläsning"],
         "description": "Projekt beskrivning här."
+      },
+      {
+        "title": "Project name 3",
+        "name": "Another Project name",
+        "tags": ["Web Development", "React", "i18n"],
+        "description": "Another project description here."
       }
     ]
   },

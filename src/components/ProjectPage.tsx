@@ -26,11 +26,13 @@ const ProjectPage: React.FC = () => {
   );
 
   return (
+    // <div className="min-h-[90dvh]">
     <SectionLayout
       title={t('projects.title')}
       description={t('projects.body')}
       content={projectCards}
     />
+    // </div>
   );
 };
 

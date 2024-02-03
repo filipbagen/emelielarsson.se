@@ -22,7 +22,6 @@ const Nav = () => {
   return (
     <nav className="flex gap-8 justify-end items-center">
       <RouterLink to="/" className={linkClass}>
-        {/* OM MIG */}
         {t('nav.home')}
       </RouterLink>
 
@@ -62,9 +61,6 @@ const Nav = () => {
         </RouterLink>
       )}
 
-      {/* If the flag is supposed to change the language or navigate somewhere, use the appropriate Link component */}
-      {/* <div className={linkClass}>🇺🇸</div> */}
-      {/* Flag buttons for language toggle */}
       <div className={linkClass} onClick={toggleLanguage}>
         {currentLang === 'en' ? '🇸🇪' : '🇺🇸'}
       </div>

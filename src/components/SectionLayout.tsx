@@ -12,7 +12,7 @@ const SectionLayout: React.FC<SectionLayoutProps> = ({
   content,
 }) => {
   return (
-    <div className="flex flex-col gap-24 min-h-[90dvh] mb-20">
+    <div className="flex flex-col gap-12 mt-28">
       <div className="flex flex-col gap-5">
         <h1>{title}</h1>
         <p>{description}</p>

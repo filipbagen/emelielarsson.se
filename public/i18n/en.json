@@ -26,6 +26,12 @@
         "name": "Another Project name",
         "tags": ["Web Development", "React", "i18n"],
         "description": "Another project description here."
+      },
+      {
+        "title": "Project name 3",
+        "name": "Another Project name",
+        "tags": ["Web Development", "React", "i18n"],
+        "description": "Another project description here."
       }
     ]
   },
