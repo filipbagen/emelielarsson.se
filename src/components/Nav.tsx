@@ -23,7 +23,7 @@ const Nav = () => {
     <nav className="flex gap-8 justify-end items-center">
       <RouterLink to="/" className={linkClass}>
         {/* OM MIG */}
-        {t('nav.home').toUpperCase()}
+        {t('nav.home')}
       </RouterLink>
 
       {location.pathname === '/' ? (
@@ -34,16 +34,16 @@ const Nav = () => {
           duration={500}
           className={linkClass}
         >
-          {t('nav.project').toUpperCase()}
+          {t('nav.project')}
         </ScrollLink>
       ) : (
         <RouterLink to="/#project" className={linkClass}>
-          {t('nav.project').toUpperCase()}
+          {t('nav.project')}
         </RouterLink>
       )}
 
       <RouterLink to="/resume" className={linkClass}>
-        {t('nav.resume').toUpperCase()}
+        {t('nav.resume')}
       </RouterLink>
 
       {location.pathname === '/' ? (
@@ -54,11 +54,11 @@ const Nav = () => {
           duration={500}
           className={linkClass}
         >
-          {t('nav.contact').toUpperCase()}
+          {t('nav.contact')}
         </ScrollLink>
       ) : (
         <RouterLink to="/#contact" className={linkClass}>
-          {t('nav.contact').toUpperCase()}
+          {t('nav.contact')}
         </RouterLink>
       )}
 
