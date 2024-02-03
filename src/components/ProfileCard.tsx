@@ -35,7 +35,7 @@ const ProfileCard = () => {
         <div className="flex flex-col gap-4 w-82 items-start">
           <h1>{t('intro.heading')}</h1>
           <h4>{t('intro.sub-heading')}</h4>
-          <p>{t('intro.body')}</p>
+          <p className="pre-wrap">{t('intro.body')}</p>
           <Button variant="primary" href="https://example.com">
             {t('nav.resume')}
           </Button>
