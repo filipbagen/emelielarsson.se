@@ -26,7 +26,7 @@ const Contact = () => {
   // Prepare the content for the section
   const contactCards = (
     <div className="flex flex-col gap-4 items-start">
-      <div className="flex gap-6">
+      <div className="flex flex-col sm:flex-row gap-6">
         <a
           href="#"
           onClick={copyToClipboard}
@@ -53,7 +53,7 @@ const Contact = () => {
   );
 
   return (
-    <div className="mb-24 mt-64">
+    <div className="mb-24 sm:mt-64">
       <SectionLayout
         title={t('contact.title')}
         description={t('contact.body')}

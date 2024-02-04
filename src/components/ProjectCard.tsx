@@ -12,7 +12,7 @@ interface ProjectCardProps {
 
 const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
   return (
-    <div className="flex flex-col gap-4">
+    <div className="flex flex-col gap-4 dark:text-white">
       <div className="flex flex-col gap-.5">
         <h3>{project.title}</h3>
         <h4>{project.name}</h4>
@@ -20,7 +20,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project }) => {
 
       <p>{project.description}</p>
 
-      <div className="flex gap-4">
+      <div className="flex gap-4 flex-wrap">
         {project.tags.map((tag: string) => (
           <Button variant="secondary" key={uuidv4()}>
             {tag}

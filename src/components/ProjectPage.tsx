@@ -23,7 +23,7 @@ const ProjectPage: React.FC = () => {
       content={
         <div className="flex flex-col gap-16 w-full relative max-w-6xl mx-auto py-14">
           {/* Background div for all projects */}
-          <div className="absolute top-0 left-0 w-[calc(100vw+500px-100px)] h-full bg-white z-[-1] rounded-tr-[180px] rounded-br-[180px] shadow-[inset_-10px_0_15px_-3px_rgba(0,0,0,0.1),inset_0_-4px_6px_-2px_rgba(0,0,0,0.05)] transform -translate-x-1/2"></div>
+          <div className="absolute inset-0 sm:w-[calc(100vw+500px-100px)] w-[] h-full bg-white dark:bg-black z-[-1] sm:rounded-tr-[180px] sm:rounded-br-[180px] sm:shadow-[inset_-10px_0_15px_-3px_rgba(0,0,0,0.1),inset_0_-4px_6px_-2px_rgba(0,0,0,0.05)] sm:transform sm:-translate-x-1/2"></div>
 
           {/* Projects */}
           {projects.map((project) => (

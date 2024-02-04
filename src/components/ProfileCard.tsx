@@ -9,10 +9,10 @@ const ProfileCard = () => {
   const { t } = useTranslation();
 
   return (
-    <div className="flex justify-center h-[80dvh]">
-      <div className="flex items-center gap-8">
+    <div className="flex justify-center sm:h-[80dvh]">
+      <div className="flex sm:flex-row flex-col items-center gap-8">
         {/* bg shape */}
-        <div className="w-4/6 h-[90%] bg-white absolute dark:bg-secondaryDark top-0 right-0 shadow-inner-lg rounded-bl-[180px] -z-10"></div>
+        <div className="w-4/6 h-[90%] bg-white absolute dark:bg-secondaryDark top-0 right-0 shadow-inner-lg rounded-bl-[180px] -z-10 hidden sm:block"></div>
 
         <div className="flex flex-col gap-8 items-center rounded-xl shadow-lg bg-[#F8F3F0] dark:bg-black px-10 py-8">
           <img
