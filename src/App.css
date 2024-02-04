@@ -1,0 +1,10 @@
+/* Ensure this base class includes the transition property */
+.menu-container {
+  transition: transform 300ms ease-in-out;
+  transform: translateX(-100%); /* Start off-screen */
+}
+
+/* When isOpen is true, apply this class to slide in */
+.menu-container.open {
+  transform: translateX(0); /* Slide in */
+}
