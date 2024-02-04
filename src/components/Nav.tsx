@@ -4,6 +4,26 @@ import { Link as ScrollLink } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes } from 'react-icons/fa';
 
+const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
+  const LinkComponent =
+    to === '/resume' ? RouterLink : isScrollLink ? ScrollLink : RouterLink;
+  const linkProps =
+    isScrollLink && to !== '/resume'
+      ? { smooth: true, offset: -50, duration: 500 }
+      : {};
+
+  return (
+    <LinkComponent
+      to={to}
+      className={className}
+      onClick={onClick}
+      {...linkProps}
+    >
+      {children}
+    </LinkComponent>
+  );
+};
+
 const Nav = () => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
@@ -15,69 +35,86 @@ const Nav = () => {
     i18n.changeLanguage(currentLang);
   }, [currentLang, i18n]);
 
+  useEffect(() => {
+    const setupMenuBackground = () => {
+      const menuBackground = document.querySelector('.menu-background');
+      if (menuBackground) {
+        menuBackground.addEventListener('click', () =>
+          menuBackground.classList.toggle('active')
+        );
+      }
+    };
+
+    setupMenuBackground();
+  }, []);
+
   const toggleLanguage = () => {
     setCurrentLang((lang) => (lang === 'en' ? 'sv' : 'en'));
   };
 
   const toggleMenu = () => {
     setIsAnimating(true);
-    setIsOpen(!isOpen);
+    requestAnimationFrame(() => {
+      setIsOpen(!isOpen);
+    });
     setTimeout(() => setIsAnimating(false), 300);
   };
 
   const linkClass =
     "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-secondary after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left after:rounded-full font-semibold";
 
+  const links = [
+    { to: '/', text: 'nav.home' },
+    { to: 'project', text: 'nav.project' },
+    { to: '/resume', text: 'nav.resume' }, // updated this line
+    { to: 'contact', text: 'nav.contact' },
+  ];
+
+  // const menuIcon = document.getElementById('menu-icon');
+  // const background = document.getElementById('background');
+
+  // if (menuIcon && background) {
+  //   menuIcon.onclick = function () {
+  //     if (background.style.backgroundColor === 'rgba(0, 0, 0, 0.5)') {
+  //       background.style.backgroundColor = ''; // Change back to original color
+  //       background.style.filter = ''; // Remove blur
+  //     } else {
+  //       background.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Darken background
+  //       background.style.filter = 'blur(5px)'; // Apply blur
+  //     }
+  //   };
+  // }
+
   return (
     <nav className="flex gap-8 justify-end items-center">
       <div
         className="sm:hidden block mb-10 cursor-pointer"
-        onClick={toggleMenu}
+        onClick={(e) => {
+          e.stopPropagation();
+          toggleMenu();
+        }}
       >
-        {isOpen ? <FaTimes /> : <FaBars />}
+        {isOpen ? (
+          <FaTimes id="menu-icon" size={24} />
+        ) : (
+          <FaBars id="menu-icon" size={24} />
+        )}
       </div>
 
+      {/* <div id="background"></div> */}
+
       <div className="hidden sm:flex gap-8">
-        <RouterLink to="/" className={linkClass}>
-          {t('nav.home')}
-        </RouterLink>
-
-        {location.pathname === '/' ? (
-          <ScrollLink
-            to="project"
-            smooth={true}
-            offset={-50}
-            duration={500}
+        {links.map((link) => (
+          <NavLink
+            key={link.to}
+            to={location.pathname === '/' ? link.to : `/#${link.to}`}
+            isScrollLink={location.pathname === '/'}
             className={linkClass}
+            onClick={() => {}}
           >
-            {t('nav.project')}
-          </ScrollLink>
-        ) : (
-          <RouterLink to="/#project" className={linkClass}>
-            {t('nav.project')}
-          </RouterLink>
-        )}
-
-        <RouterLink to="/resume" className={linkClass}>
-          {t('nav.resume')}
-        </RouterLink>
-
-        {location.pathname === '/' ? (
-          <ScrollLink
-            to="contact"
-            smooth={true}
-            offset={-50}
-            duration={500}
-            className={linkClass}
-          >
-            {t('nav.contact')}
-          </ScrollLink>
-        ) : (
-          <RouterLink to="/#contact" className={linkClass}>
-            {t('nav.contact')}
-          </RouterLink>
-        )}
-
+            {t(link.text)}
+          </NavLink>
+        ))}
         <div className={linkClass} onClick={toggleLanguage}>
           {currentLang === 'en' ? '🇸🇪' : '🇺🇸'}
         </div>
@@ -85,9 +122,7 @@ const Nav = () => {
 
       {(isOpen || isAnimating) && (
         <div
-          className={`fixed top-0 left-0 w-full h-full bg-black bg-opacity-50 ${
-            isOpen || isAnimating ? 'menu-container open' : 'menu-container'
-          }`}
+          className={`menu-background ${isOpen ? 'fadeIn' : 'fadeOut'}`}
           onClick={toggleMenu}
         >
           <div
@@ -97,56 +132,17 @@ const Nav = () => {
               transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
             }}
           >
-            <RouterLink to="/" className={linkClass} onClick={toggleMenu}>
-              {t('nav.home')}
-            </RouterLink>
-
-            {location.pathname === '/' ? (
-              <ScrollLink
-                to="project"
-                smooth={true}
-                offset={-50}
-                duration={500}
+            {links.map((link) => (
+              <NavLink
+                key={link.to}
+                to={location.pathname === '/' ? link.to : `/#${link.to}`}
+                isScrollLink={location.pathname === '/'}
                 className={linkClass}
                 onClick={toggleMenu}
               >
-                {t('nav.project')}
-              </ScrollLink>
-            ) : (
-              <RouterLink
-                to="/#project"
-                className={linkClass}
-                onClick={toggleMenu}
-              >
-                {t('nav.project')}
-              </RouterLink>
-            )}
-
-            <RouterLink to="/resume" className={linkClass} onClick={toggleMenu}>
-              {t('nav.resume')}
-            </RouterLink>
-
-            {location.pathname === '/' ? (
-              <ScrollLink
-                to="contact"
-                smooth={true}
-                offset={-50}
-                duration={500}
-                className={linkClass}
-                onClick={toggleMenu}
-              >
-                {t('nav.contact')}
-              </ScrollLink>
-            ) : (
-              <RouterLink
-                to="/#contact"
-                className={linkClass}
-                onClick={toggleMenu}
-              >
-                {t('nav.contact')}
-              </RouterLink>
-            )}
-
+                {t(link.text)}
+              </NavLink>
+            ))}
             <div
               className={linkClass}
               onClick={() => {

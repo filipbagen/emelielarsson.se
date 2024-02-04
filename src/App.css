@@ -1,10 +1,40 @@
-/* Ensure this base class includes the transition property */
-.menu-container {
-  transition: transform 300ms ease-in-out;
-  transform: translateX(-100%); /* Start off-screen */
+@keyframes fadeIn {
+  from {
+    background-color: rgba(0, 0, 0, 0);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
 }
 
-/* When isOpen is true, apply this class to slide in */
-.menu-container.open {
-  transform: translateX(0); /* Slide in */
+@keyframes fadeOut {
+  from {
+    background-color: rgba(0, 0, 0, 0.5);
+  }
+  to {
+    background-color: rgba(0, 0, 0, 0);
+  }
+}
+
+.menu-background {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.menu-background.fadeIn {
+  animation: fadeIn 0.2s forwards;
+  pointer-events: auto;
+  z-index: 10;
+}
+
+.menu-background.fadeOut {
+  animation: fadeOut 0.2s forwards;
+  pointer-events: auto;
+  z-index: 10;
 }

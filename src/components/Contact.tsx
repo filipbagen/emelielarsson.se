@@ -39,6 +39,7 @@ const Contact = () => {
         <a
           href="https://www.linkedin.com/in/emelie-larsson-820846226/"
           target="_blank"
+          rel="noreferrer"
           className="flex gap-2 items-center"
         >
           <FontAwesomeIcon icon={faLinkedin} />
