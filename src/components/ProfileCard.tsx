@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 
 // components
@@ -36,9 +37,10 @@ const ProfileCard = () => {
           <h1>{t('intro.heading')}</h1>
           <h4>{t('intro.sub-heading')}</h4>
           <p className="pre-wrap">{t('intro.body')}</p>
-          <Button variant="primary" href="https://example.com">
-            {t('nav.resume')}
-          </Button>
+
+          <RouterLink to="/resume">
+            <Button variant="primary">{t('nav.resume')}</Button>
+          </RouterLink>
         </div>
       </div>
     </div>

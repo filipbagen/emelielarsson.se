@@ -24,7 +24,7 @@ const Button: React.FC<ButtonProps> = ({
   const className = buttonStyles[variant] || buttonStyles.secondary;
 
   return href ? (
-    <a href={href} className={className} onClick={onClick}>
+    <a href={href} target="_blank" className={className} onClick={onClick}>
       {children}
     </a>
   ) : (

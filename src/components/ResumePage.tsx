@@ -79,7 +79,11 @@ const ResumePage = () => {
       <div className="flex flex-col gap-8">
         <div className="flex flex-end justify-between">
           <h2>{t('resume.educationHeader')}</h2>
-          <Button variant="primary" href="https://example.com">
+
+          <Button
+            variant="primary"
+            href={`${process.env.PUBLIC_URL}/assets/data/emelie_larsson_resume.pdf`}
+          >
             {t('resume.resume')}
           </Button>
         </div>
