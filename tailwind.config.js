@@ -18,7 +18,7 @@ module.exports = {
       },
       boxShadow: {
         '3xl': '0 35px 60px -15px rgba(0, 0, 0, 0.3)',
-        'inner-lg': 'inset 0px 0px 8px 5px rgba(0, 0, 0, 0.10)',
+        'inner-lg': 'inset 0px 0px 8px 3px rgba(0, 0, 0, 0.10)',
       },
       filter: {
         none: 'none',

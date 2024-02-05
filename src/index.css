@@ -1,6 +1,6 @@
-@tailwind base;
 @tailwind components;
 @tailwind utilities;
+@tailwind base;
 
 @layer base {
   html {
@@ -20,7 +20,7 @@
   }
 
   p {
-    @apply font-body text-sm font-normal;
+    @apply font-body text-sm font-normal leading-relaxed;
   }
 
   h1,
