@@ -86,8 +86,6 @@ const Nav = () => {
         )}
       </div>
 
-      {/* <div id="background"></div> */}
-
       <div className="hidden sm:flex gap-8">
         {links.map((link) => (
           <NavLink
