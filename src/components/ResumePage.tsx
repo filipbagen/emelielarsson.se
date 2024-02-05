@@ -2,7 +2,6 @@ import React from 'react';
 import { useTranslation } from 'react-i18next';
 import MainLayout from '../components/MainLayout.tsx';
 import SectionLayout from '../components/SectionLayout.tsx';
-import { v4 as uuidv4 } from 'uuid';
 import Button from '../components/Button.tsx';
 
 // Define the interfaces for the structure of your resume data
@@ -61,7 +60,7 @@ const ResumePage = () => {
       },
       {
         threshold: 0.0, // Adjust this to control when the animation starts
-        rootMargin: '-12px', // Optionally, adjust the root margin if needed
+        rootMargin: '120px', // Optionally, adjust the root margin if needed
       }
     );
 
@@ -88,18 +87,19 @@ const ResumePage = () => {
           </Button>
         </div>
         {educationList.map((edu) => (
-          <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none">
-            <div
-              key={uuidv4()}
-              className="flex justify-between bg-white dark:bg-black p-14 rounded-lg"
-            >
-              <div className="flex flex-col gap-2 w-full">
-                <h3 className="text-secondary">{edu.year}</h3>
+          <div
+            key={edu.degreeLevel}
+            className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none"
+          >
+            <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
+              {/* Static content mimicking dynamic content */}
+              <div className="flex flex-col gap-2">
+                <h3 className="text-secondary whitespace-nowrap">{edu.year}</h3>
                 <p>{t('resume.experienceHeader').toUpperCase()}</p>
                 <p>{edu.degreeLevel}</p>
               </div>
 
-              <div className="w-[745px]">
+              <div>
                 <p>{edu.body}</p>
               </div>
             </div>
@@ -110,18 +110,18 @@ const ResumePage = () => {
       <div className="flex flex-col gap-4">
         <h2>{t('resume.experienceHeader')}</h2>
         {experienceList.map((exp) => (
-          <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out">
-            <div
-              key={uuidv4()}
-              className="flex justify-between bg-white dark:bg-black p-14 rounded-lg"
-            >
-              <div className="flex flex-col gap-2 w-full">
+          <div
+            key={exp.company}
+            className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out"
+          >
+            <div className="flex flex-col sm:flex-row justify-between bg-white dark:bg-black p-14 rounded-lg">
+              <div className="flex flex-col gap-2">
                 <h3 className="text-secondary">{exp.year}</h3>
                 <p>{exp.position.toUpperCase()}</p>
                 <p>{exp.company}</p>
               </div>
 
-              <div className="w-[745px]">
+              <div>
                 <p>{exp.body}</p>
               </div>
             </div>
@@ -132,9 +132,9 @@ const ResumePage = () => {
       <div className="flex flex-col gap-4">
         <h2>{t('resume.skillsHeader')}</h2>
         <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out">
-          <ul className="flex justify-between bg-white dark:bg-black p-14 rounded-lg list-disc">
+          <ul className="flex justify-between gap-4 flex-wrap bg-white dark:bg-black p-14 rounded-lg list-disc">
             {skillsList.map((skill) => (
-              <li key={uuidv4()}>{skill}</li>
+              <li key={skill}>{skill}</li>
             ))}
           </ul>
         </div>

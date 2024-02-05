@@ -70,21 +70,6 @@ const Nav = () => {
     { to: 'contact', text: 'nav.contact' },
   ];
 
-  // const menuIcon = document.getElementById('menu-icon');
-  // const background = document.getElementById('background');
-
-  // if (menuIcon && background) {
-  //   menuIcon.onclick = function () {
-  //     if (background.style.backgroundColor === 'rgba(0, 0, 0, 0.5)') {
-  //       background.style.backgroundColor = ''; // Change back to original color
-  //       background.style.filter = ''; // Remove blur
-  //     } else {
-  //       background.style.backgroundColor = 'rgba(0, 0, 0, 0.5)'; // Darken background
-  //       background.style.filter = 'blur(5px)'; // Apply blur
-  //     }
-  //   };
-  // }
-
   return (
     <nav className="flex gap-8 justify-end items-center">
       <div
@@ -126,7 +111,7 @@ const Nav = () => {
           onClick={toggleMenu}
         >
           <div
-            className="w-[300px] rounded-r-2xl h-full shadow-2xl bg-[#F8F3F0] dark:bg-black flex flex-col items-center justify-center space-y-8 overflow-auto transform transition-transform duration-300 ease-in-out"
+            className="w-[300px] rounded-r-2xl h-[100dvh] shadow-2xl bg-[#F8F3F0] dark:bg-black flex flex-col items-center justify-center space-y-8 overflow-auto transform transition-transform duration-300 ease-in-out"
             onClick={(e) => e.stopPropagation()}
             style={{
               transform: isOpen ? 'translateX(0)' : 'translateX(-100%)',
