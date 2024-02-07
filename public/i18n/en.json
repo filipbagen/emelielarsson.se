@@ -8,82 +8,111 @@
   "intro": {
     "heading": "Hello",
     "sub-heading": "Here's who I am & what I do",
-    "body": "I am a creative language enthusiast with a great interest in communication and books. I have previously worked in article writing, text production, translation, and photography. \n\nSome of the jobs I have done can be found further down. My 4 years at university have resulted in two bachelor's degrees from the Language and Communication program and a number of courses in literary studies.",
-    "title": "Writer, language editor, translator"
+    "body": "I am a creative language nerd with a great interest in literature and communication. I have previously worked with text production, editorial work, translations, and photography. Currently I am working as an editor and language reviewer. However, I still take on projects within the field of text production and translation. \n\nMy soon to be 5 years at university have resulted in two bachelor's degrees from the Language and Communication Program, many courses in literary science and finally a specialisation in publishing.",
+    "title": "Editor • Proofreader • Writer • Translator"
   },
   "projects": {
     "title": "Projects",
-    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.",
+    "body": "Here are a few of my previous projects.",
     "list": [
       {
-        "title": "Project name 1",
-        "name": "Project name",
-        "tags": ["Localization", "Translation", "Editing"],
-        "description": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you."
+        "title": "Podcast Summaries",
+        "name": "Eget Förlag",
+        "tags": [],
+        "description": "I summarised podcast episodes in text. They were then published on their website."
       },
       {
-        "title": "Project name 2",
-        "name": "Another Project name",
-        "tags": ["Web Development", "React", "i18n"],
-        "description": "Another project description here."
+        "title": "Articles for Website and Social Media",
+        "name": "Kommunikationssektionen på Mälardalens Universitet",
+        "tags": [],
+        "description": "I wrote articles for their website and social media platforms."
       },
       {
-        "title": "Project name 3",
-        "name": "Another Project name",
-        "tags": ["Web Development", "React", "i18n"],
-        "description": "Another project description here."
+        "title": "Text Material for a Career Fair",
+        "name": "The Media Technology Day at Linköping University",
+        "tags": [],
+        "description": "The assignment was to translate text from Swedish to English, which was later on sent to their sponsors."
       }
     ]
   },
   "contact": {
     "title": "Contact",
-    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you."
+    "body": "You can find my contact information right down below. Do not hesitate to contact me! I am looking forward to hearing from you."
   },
   "resume": {
     "title": "Resume",
-    "body": "I'm a paragraph. Click here to add your own text and edit me. It's easy. Just click “Edit Text” or double click me to add your own content and make changes to the font. I'm a great place for you to tell a story and let your users know a little more about you.",
+    "body": "Here is some information about my education and previous work.",
     "resume": "Download Resume",
     "educationHeader": "Education",
     "experienceHeader": "Experience",
     "skillsHeader": "Skills",
     "education": [
       {
-        "header": "Utbildning",
         "year": "2023 - 2024",
         "universityName": "Stockholm University",
-        "degreeLevel": "Publishing",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "degreeLevel": "Publishing Studies",
+        "body": "This has given me a deeper knowledge about the publishing industry and it has prepared me for work within the field."
       },
       {
-        "header": "Utbildning",
         "year": "2022 - 2023",
         "universityName": "Linköping University",
         "degreeLevel": "Literary Science",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "body": "The courses provided me with extensive understanding of literary history. It also strengthen my analytic and interpretative abilities within the field of literature from different historical eras."
       },
       {
-        "header": "Utbildning",
         "year": "2019 - 2022",
         "universityName": "Mälardalen University",
-        "degreeLevel": "Degree of Bachelor of Arts in English and Swedish Language and Communication",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "degreeLevel": "Bachelor's Programme in Language and Communication",
+        "body": "I completed two Degrees of Bachelor of Arts, one with English as my major and one with Swedish."
       }
     ],
     "experience": [
       {
-        "year": "2020 - 2021",
-        "position": "Position",
-        "company": "Företag",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "year": "2023",
+        "position": "Editor",
+        "company": "Natur och Kultur",
+        "body": "The freelance work involved textual editing. It taught me how to be thorough and adaptable to the intended structure."
+      },
+      {
+        "year": "2023",
+        "position": "Text Production",
+        "company": "Natur och Kultur",
+        "body": "I summarised podcast episodes in text. They were then published on their website."
+      },
+      {
+        "year": "2022",
+        "position": "Translator",
+        "company": "The Media Technology Day at Linköping University",
+        "body": "I translated text from Swedish to English for a career fair, which was later on sent to company sponsors."
+      },
+      {
+        "year": "2021",
+        "position": "Article Writer",
+        "company": "The Communication Department at Mälardalen University",
+        "body": "I did interviews and wrote articles for the University's website and social media platforms. The purpose was to inspire and motivate students. Some articles I wrote was on how to become an expert on digital meeting and how to keep in touch with your classmates during lockdown."
+      },
+      {
+        "year": "2021",
+        "position": "English Substitute Teacher",
+        "company": "Grillska Gymnasiet",
+        "body": "I taught English 5,6 and 7. This work taught me about structure, leadership and communication."
+      },
+      {
+        "year": "2017 - 2022",
+        "position": "Photographer",
+        "company": "Freelance",
+        "body": "I did photography work for IKEA, Avis Car Rental, a gala called Guldstänk and a mall named Kvarteret Igor. I have done everything from product photos to events. This also resulted in a lot of work in Affinity Photo and Photoshop."
       }
     ],
     "skills": [
-      "Language",
-      "Translation",
-      "Editing",
-      "Web Development",
-      "React",
-      "i18n"
+      "Affinity Photo",
+      "Photoshop",
+      "InDesign",
+      "Text Editing",
+      "Translator",
+      "Text Production",
+      "photography",
+      "Language Reviewer"
     ]
   }
 }

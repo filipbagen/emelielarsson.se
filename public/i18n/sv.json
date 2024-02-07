@@ -7,83 +7,112 @@
   },
   "intro": {
     "heading": "Hej",
-    "sub-heading": "Det här är vad jag gör",
-    "body": "Jag är en kreativ språknörd med ett stort intresse för kommunikation och böcker. Jag har tidigare arbetat inom artikelskrivande, textproduktion, översättning och foto.\n\nNågra av de jobb jag har gjort hittar du längre ner. Mina 4 år på universitetet har resulterat i två kandidatexamen från Språk- och kommunikationsprogrammet och en hel del kurser i litteraturvetenskap.",
-    "title": "Skribent, språkgranskare, översättare"
+    "sub-heading": "Det här är vem jag är och vad jag gör",
+    "body": "Jag är en kreativ språknörd med ett stort intresse för litteratur och kommunikation. Jag har tidigare arbetat med textproduktion, redaktörsarbete, översättning och foto. I nuläget frilansar jag främst som textredaktör och språkgranskare, men jag tar även uppdrag inom textproduktion och översättning. \n\nMina snart fem år på universitetet har resulterat i två kandidatexamen från Språk- och kommunikationsprogrammet, en hel del kurser i litteraturvetenskap och slutligen en fördjupning inom förlagskunskap.",
+    "title": "Redaktör • Korrekturläsare • Skribent • Översättare"
   },
   "projects": {
     "title": "Projekt",
-    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre.",
+    "body": "Här är några av mina tidigare projekt och arbeten.",
     "list": [
       {
-        "title": "Projekt namn 1",
-        "name": "Projekt namn 1",
-        "tags": ["Webbutveckling", "React", "i18n"],
-        "description": "Projekt beskrivning här."
+        "title": "Poddsummeringar",
+        "name": "Eget Förlag",
+        "tags": ["Språk", "Textproduktion", "Redigering"],
+        "description": "Jag summerade poddavsnitt i text som sedan publicerades på förlagets webbsida."
       },
       {
-        "title": "Projekt namn 2",
-        "name": "Projekt namn 2",
-        "tags": ["Språk", "Översättning", "Korrekturläsning"],
-        "description": "Projekt beskrivning här."
+        "title": "Artiklar för webb och sociala medier",
+        "name": "Kommunikationssektionen på Mälardalens Universitet",
+        "tags": [],
+        "description": "Jag gjorde reportage och skrev artiklar till deras webbsida och sociala medier. "
       },
       {
-        "title": "Project name 3",
-        "name": "Another Project name",
-        "tags": ["Web Development", "React", "i18n"],
-        "description": "Another project description here."
+        "title": "Textmaterial för en arbetsmarknadsdag",
+        "name": "Medieteknikdagen - Medieteknikstudenternas arbetsmarknadsdag på Linköpings Universitet.",
+        "tags": [],
+        "description": "Arbetet innebar att översätta textmaterial från svenska till engelska som skulle skickas ut till deras sponsorer."
       }
     ]
   },
   "contact": {
     "title": "Kontakt",
-    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+    "body": "Här nere hittar du mina kontaktuppgifter. Tveka inte på att höra av dig! Jag ser framemot att prata mer."
   },
   "resume": {
     "title": "CV",
-    "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre.",
+    "body": "Här kan du läsa mer om min utbildning och vad jag har arbetat med.",
     "resume": "Ladda ner CV",
     "educationHeader": "Utbildning",
     "experienceHeader": "Erfarenhet",
     "skillsHeader": "Kunskaper",
     "education": [
       {
-        "header": "Utbildning",
         "year": "2023 - 2024",
         "universityName": "Stockholms Universitet",
         "degreeLevel": "Förlagskunskap",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "body": "Detta har förberett mig inför arbetet inom förlagsbranschen och det har gett mig en djupare förståelse för förlagsverksamheten."
       },
       {
-        "header": "Utbildning",
         "year": "2022 - 2023",
         "universityName": "Linköpings Universitet",
         "degreeLevel": "Litteraturvetenskap",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "body": "Kurserna gav mig en bred kunskap inom litterär historia. Det stärkte mina förmågor inom analysering och tolkning av litteratur från olika historiska epoker."
       },
       {
-        "header": "Utbildning",
         "year": "2019 - 2022",
         "universityName": "Mälardales Universitet",
-        "degreeLevel": "Kandidatexamen i engelska och svenska språk och kommunikation",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "degreeLevel": "Språk och Kommunikationsprogrammet",
+        "body": "Under mitt kandidatprogram valde jag att genomföra dubbla kandidatexamen, vilket resulterade i att jag nu har två filosofie kandidatexamen, en med huvudområdet engelska och en med huvudområdet svenska."
       }
     ],
     "experience": [
       {
-        "year": "2020 - 2021",
-        "position": "Position",
-        "company": "Företag",
-        "body": "Jag är en paragraf. Klicka här för att redigera och lägga till din egen text. Det är enkelt. Klicka bara på “Redigera text” eller dubbelklicka på mig för att lägga till din egen text och ändra fonter. Jag är ett bra ställe för dig att berätta din historia och låta dina användare lära känna dig lite bättre."
+        "year": "2023 - pågående",
+        "position": "Textproduktion",
+        "company": "Natur och Kultur",
+        "body": "Jag genomförde ett flertal frilansuppdrag för förlaget, där arbetet innebar att jobba med textredigering."
+      },
+      {
+        "year": "2023",
+        "position": "Textproduktion",
+        "company": "Eget Förlag",
+        "body": "Jag summerade poddavsnitt i text som förlaget sedan publicerade på sin webbsida."
+      },
+      {
+        "year": "2022",
+        "position": "Översättare",
+        "company": "MTDs arbetsmarknadsmässa på Linköpings Universitet",
+        "body": "Arbetet innefattade att översätta textmaterial från svenska till engelska. Detta material skickades sedan ut till deras företagssponsorer."
+      },
+      {
+        "year": "2021",
+        "position": "Skribent",
+        "company": "Kommunikationssektionen på Mälardalens Universitet",
+        "body": "Jag skrev artiklar till universitets webbsida och sociala medier. Jag genomförde intervjuer och reportage som skulle inspirera och motivera studenter. Några artiklar jag skrev var bland annat om hur man blir en expert på digitala möten och hur man håller kontakten med sina klasskompisar under pandemi-tider."
+      },
+      {
+        "year": "2021",
+        "position": "Vikarie som gymnasielärare i engelska",
+        "company": "Grillska Gymnasiet",
+        "body": "Jag undervisade som vikarie i Engelska 5,6 och 7. Arbetet lärde mig om struktur, ledarskap och kommunikation."
+      },
+      {
+        "year": "2017 - 2022",
+        "position": "Fotograf",
+        "company": "Frilans",
+        "body": "Jag utförde fotojobb för bland annat IKEA, Avis Biluthyrning, Guldstänkgalan och Kvarteret Igor. Fotojobben har innefattat allt från produktbilder till mingelbilder. Det resulterade dessutom i många timmars arbete i Affinity Photo och Photoshop."
       }
     ],
     "skills": [
-      "Språk",
+      "Affinity Photo",
+      "Photoshop",
+      "InDesign",
+      "Textredigering",
       "Översättning",
-      "Korrekturläsning",
-      "Webbutveckling",
-      "React",
-      "i18n"
+      "Textproduktion",
+      "Fotografering",
+      "Språkgranskning"
     ]
   }
 }
