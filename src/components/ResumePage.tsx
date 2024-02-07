@@ -34,7 +34,7 @@ interface ResumeData {
 
 const ResumePage = () => {
   const { t, i18n } = useTranslation();
-  const [language, setLanguage] = useState(i18n.language);
+  const [language] = useState(i18n.language);
   const resumeData = t('resume', { returnObjects: true }) as ResumeData;
   const educationList = resumeData.education;
   const experienceList = resumeData.experience;
@@ -88,7 +88,6 @@ const ResumePage = () => {
         </div>
         {educationList.map((edu, index) => (
           <div
-            // key={edu.degreeLevel}
             key={`${index}-${language}`}
             className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none"
           >
@@ -112,7 +111,6 @@ const ResumePage = () => {
         <h2>{t('resume.experienceHeader')}</h2>
         {experienceList.map((exp, index) => (
           <div
-            // key={exp.company}
             key={`${index}-${language}`}
             className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out"
           >
