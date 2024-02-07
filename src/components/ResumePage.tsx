@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTranslation } from 'react-i18next';
 import MainLayout from '../components/MainLayout.tsx';
 import SectionLayout from '../components/SectionLayout.tsx';
@@ -33,8 +33,8 @@ interface ResumeData {
 }
 
 const ResumePage = () => {
-  const { t } = useTranslation();
-
+  const { t, i18n } = useTranslation();
+  const [language, setLanguage] = useState(i18n.language);
   const resumeData = t('resume', { returnObjects: true }) as ResumeData;
   const educationList = resumeData.education;
   const experienceList = resumeData.experience;
@@ -86,16 +86,17 @@ const ResumePage = () => {
             {t('resume.resume')}
           </Button>
         </div>
-        {educationList.map((edu) => (
+        {educationList.map((edu, index) => (
           <div
-            key={edu.degreeLevel}
+            // key={edu.degreeLevel}
+            key={`${index}-${language}`}
             className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none"
           >
             <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
               {/* Static content mimicking dynamic content */}
-              <div className="flex flex-col gap-2">
+              <div className="flex flex-col gap-2 min-w-[212px]">
                 <h3 className="text-secondary whitespace-nowrap">{edu.year}</h3>
-                <p>{t('resume.experienceHeader').toUpperCase()}</p>
+                <p>{edu.universityName}</p>
                 <p>{edu.degreeLevel}</p>
               </div>
 
@@ -109,15 +110,16 @@ const ResumePage = () => {
 
       <div className="flex flex-col gap-4">
         <h2>{t('resume.experienceHeader')}</h2>
-        {experienceList.map((exp) => (
+        {experienceList.map((exp, index) => (
           <div
-            key={exp.company}
+            // key={exp.company}
+            key={`${index}-${language}`}
             className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out"
           >
-            <div className="flex flex-col sm:flex-row justify-between bg-white dark:bg-black p-14 rounded-lg">
-              <div className="flex flex-col gap-2">
+            <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
+              <div className="flex flex-col gap-2 min-w-[212px]">
                 <h3 className="text-secondary">{exp.year}</h3>
-                <p>{exp.position.toUpperCase()}</p>
+                <p>{exp.position}</p>
                 <p>{exp.company}</p>
               </div>
 
