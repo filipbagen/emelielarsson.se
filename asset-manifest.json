@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/emelies-portfolio/static/css/main.edc1a681.css",
-    "main.js": "/emelies-portfolio/static/js/main.540e11af.js",
-    "index.html": "/emelies-portfolio/index.html",
-    "static/media/getFetch.cjs": "/emelies-portfolio/static/media/getFetch.40f37ddea2378391108f.cjs",
-    "main.edc1a681.css.map": "/emelies-portfolio/static/css/main.edc1a681.css.map",
-    "main.540e11af.js.map": "/emelies-portfolio/static/js/main.540e11af.js.map"
+    "main.css": "/static/css/main.edc1a681.css",
+    "main.js": "/static/js/main.ab90d6bd.js",
+    "index.html": "/index.html",
+    "static/media/getFetch.cjs": "/static/media/getFetch.40f37ddea2378391108f.cjs",
+    "main.edc1a681.css.map": "/static/css/main.edc1a681.css.map",
+    "main.ab90d6bd.js.map": "/static/js/main.ab90d6bd.js.map"
   },
   "entrypoints": [
     "static/css/main.edc1a681.css",
-    "static/js/main.540e11af.js"
+    "static/js/main.ab90d6bd.js"
   ]
 }
