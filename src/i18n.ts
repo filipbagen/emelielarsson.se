@@ -5,7 +5,7 @@ import i18nBackend from 'i18next-http-backend'; // Import the backend
 const getCurrentHost =
   process.env.NODE_ENV === 'development'
     ? 'http://localhost:3000'
-    : 'https://filipbagen.github.io/emelies-portfolio/';
+    : 'https://emelielarsson.se';
 
 // Detect the browser language
 const browserLanguage = navigator.language.split('-')[0]; // Get the language code without the region code
