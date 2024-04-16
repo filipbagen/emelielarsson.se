@@ -95,7 +95,7 @@ const ResumePage = () => {
               {/* Static content mimicking dynamic content */}
               <div className="flex flex-col gap-2 min-w-[212px]">
                 <h3 className="text-secondary whitespace-nowrap">{edu.year}</h3>
-                <p>{edu.universityName}</p>
+                <p className="font-semibold">{edu.universityName}</p>
                 <p>{edu.degreeLevel}</p>
               </div>
 
@@ -117,7 +117,7 @@ const ResumePage = () => {
             <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
               <div className="flex flex-col gap-2 min-w-[212px]">
                 <h3 className="text-secondary">{exp.year}</h3>
-                <p>{exp.position}</p>
+                <p className="font-semibold">{exp.position}</p>
                 <p>{exp.company}</p>
               </div>
 
@@ -132,7 +132,7 @@ const ResumePage = () => {
       <div className="flex flex-col gap-4">
         <h2>{t('resume.skillsHeader')}</h2>
         <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out">
-          <ul className="flex justify-between gap-4 flex-wrap bg-white dark:bg-black p-14 rounded-lg list-disc">
+          <ul className="grid grid-cols-3 gap-4 list-disc bg-white dark:bg-black p-14 rounded-lg">
             {skillsList.map((skill) => (
               <li key={skill}>{skill}</li>
             ))}
@@ -142,6 +142,7 @@ const ResumePage = () => {
     </>
   );
 
+  // flex flex-wrap justify-between gap-4
   return (
     <MainLayout>
       <SectionLayout
