@@ -16,22 +16,34 @@
     "body": "Here are a few of my previous projects.",
     "list": [
       {
+        "title": "Text Editor",
+        "name": "Natur och Kultur",
+        "tags": ["Text Editing", "Educational Materials", "Text Editor"],
+        "description": "Text editor assignment for the publisher's educational materials department. The assignments developed my editing skills, as well as my accuracy and precision."
+      },
+      {
         "title": "Podcast Summaries",
         "name": "Eget Förlag",
-        "tags": [],
+        "tags": ["Language", "Text Production", "Editing"],
         "description": "I summarised podcast episodes in text. They were then published on their website."
       },
       {
         "title": "Articles for Website and Social Media",
         "name": "Kommunikationssektionen på Mälardalens Universitet",
-        "tags": [],
-        "description": "I wrote articles for their website and social media platforms."
+        "tags": ["Text Production", "Text Editing", "Interviews"],
+        "description": "I wrote reports and articles for their website and social media."
       },
       {
         "title": "Text Material for a Career Fair",
         "name": "The Media Technology Day at Linköping University",
-        "tags": [],
+        "tags": ["Translation", "Text Editing", "Communication"],
         "description": "The assignment was to translate text from Swedish to English, which was later on sent to their sponsors."
+      },
+      {
+        "title": "Photographer",
+        "name": "Freelance",
+        "tags": ["Photoshop", "Affinity Photo", "Editing"],
+        "description": "I performed photography jobs for clients including IKEA, Avis Car Rental, the Gold Sparkle Gala, and the Quarter Igor. The photography jobs have included everything from product images to mingle pictures."
       }
     ]
   },
@@ -47,6 +59,12 @@
     "experienceHeader": "Experience",
     "skillsHeader": "Skills",
     "education": [
+      {
+        "year": "2024 - ongoing",
+        "universityName": "Bazar Publishers",
+        "degreeLevel": "Internship",
+        "body": "This has deepened my knowledge of the publishing business. I have had the opportunity to work in both editorial and marketing and sales."
+      },
       {
         "year": "2023 - 2024",
         "universityName": "Stockholm University",
@@ -112,7 +130,8 @@
       "Translator",
       "Text Production",
       "photography",
-      "Language Reviewer"
+      "Language Reviewer",
+      "Proofreading"
     ]
   }
 }
