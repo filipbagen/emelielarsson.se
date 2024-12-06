@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import Home from './components/Home.tsx';
 import ResumePage from './components/ResumePage.tsx';
 import Login from './pages/Login.tsx';
+import Edit from './pages/Edit.tsx';
 
 import './App.css';
 
@@ -36,6 +37,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="resume" element={<ResumePage />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+          <Route path="/edit" element={<Edit isAuth={isAuth} />} />
         </Routes>
       </BrowserRouter>
     </Suspense>
