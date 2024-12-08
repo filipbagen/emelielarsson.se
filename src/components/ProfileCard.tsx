@@ -1,12 +1,30 @@
 import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
+import useLocalizedContent from '../hooks/useLocalizedContent.ts';
 
 // components
 import Button from '../components/Button.tsx';
 
 const ProfileCard = () => {
-  const { t } = useTranslation();
+  const { content, loading, error } = useLocalizedContent(
+    'websiteContent',
+    'intro'
+  );
+
+  // if (loading) {
+  //   return <div>Loading...</div>;
+  // }
+
+  if (error) {
+    return <div>Error loading projects!</div>;
+  }
+
+  const { title, heading, subHeading, body } = content || {
+    title: '',
+    heading: '',
+    subHeading: '',
+    body: '',
+  };
 
   return (
     <div className="flex justify-center sm:h-[80dvh]">
@@ -29,17 +47,17 @@ const ProfileCard = () => {
             {/* Horizontal line */}
             <div className="h-1 w-14 rounded-full bg-secondary"></div>
 
-            <p className="text-center whitespace-nowrap">{t('intro.title')}</p>
+            <p className="text-center whitespace-nowrap">{title}</p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 w-82 items-start">
-          <h1>{t('intro.heading')}</h1>
-          <h4>{t('intro.sub-heading')}</h4>
-          <p className="pre-wrap">{t('intro.body')}</p>
+          <h1>{heading}</h1>
+          <h4>{subHeading}</h4>
+          <p className="pre-wrap">{body}</p>
 
           <RouterLink to="/resume">
-            <Button variant="primary">{t('nav.resume')}</Button>
+            {/* <Button variant="primary">{t('nav.resume')}</Button> */}
           </RouterLink>
         </div>
       </div>

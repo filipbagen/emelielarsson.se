@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '../LanguageContext.tsx';
 
 const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
   const LinkComponent =
@@ -25,32 +25,10 @@ const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
 };
 
 const Nav = () => {
-  const { i18n, t } = useTranslation();
+  const { currentLang, setCurrentLang } = useLanguage();
   const location = useLocation();
-  const [currentLang, setCurrentLang] = useState(i18n.language);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
-
-  useEffect(() => {
-    i18n.changeLanguage(currentLang);
-  }, [currentLang, i18n]);
-
-  useEffect(() => {
-    const setupMenuBackground = () => {
-      const menuBackground = document.querySelector('.menu-background');
-      if (menuBackground) {
-        menuBackground.addEventListener('click', () =>
-          menuBackground.classList.toggle('active')
-        );
-      }
-    };
-
-    setupMenuBackground();
-  }, []);
-
-  const toggleLanguage = () => {
-    setCurrentLang((lang) => (lang === 'en' ? 'sv' : 'en'));
-  };
 
   const toggleMenu = () => {
     setIsAnimating(true);
@@ -64,10 +42,10 @@ const Nav = () => {
     "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-secondary after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left after:rounded-full font-semibold";
 
   const links = [
-    { to: '/', text: 'nav.home' },
-    { to: 'project', text: 'nav.project' },
-    { to: '/resume', text: 'nav.resume' }, // updated this line
-    { to: 'contact', text: 'nav.contact' },
+    { to: '/', text: currentLang === 'en' ? 'Home' : 'Hem' },
+    { to: 'project', text: currentLang === 'en' ? 'Projects' : 'Projekt' },
+    { to: '/resume', text: currentLang === 'en' ? 'Resume' : 'CV' },
+    { to: 'contact', text: currentLang === 'en' ? 'Contact' : 'Kontakt' },
   ];
 
   return (
@@ -95,10 +73,13 @@ const Nav = () => {
             className={linkClass}
             onClick={() => {}}
           >
-            {t(link.text)}
+            {link.text}
           </NavLink>
         ))}
-        <div className={linkClass} onClick={toggleLanguage}>
+        <div
+          className={linkClass}
+          onClick={() => setCurrentLang(currentLang === 'en' ? 'sv' : 'en')}
+        >
           {currentLang === 'en' ? '🇸🇪' : '🇺🇸'}
         </div>
       </div>
@@ -123,13 +104,13 @@ const Nav = () => {
                 className={linkClass}
                 onClick={toggleMenu}
               >
-                {t(link.text)}
+                {link.text}
               </NavLink>
             ))}
             <div
               className={linkClass}
               onClick={() => {
-                toggleLanguage();
+                setCurrentLang(currentLang === 'en' ? 'sv' : 'en');
                 toggleMenu();
               }}
             >
