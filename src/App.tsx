@@ -10,7 +10,7 @@ import Edit from './pages/Edit.tsx';
 import './App.css';
 
 const App = () => {
-  const [isAuth, setIsAuth] = useState<boolean>(
+  const [isAuth, setIsAuth] = useState(
     localStorage.getItem('isAuth') === 'true'
   );
 
@@ -34,7 +34,7 @@ const App = () => {
           )}
         </nav>
         <Routes>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home isAuth={isAuth} />} />
           <Route path="resume" element={<ResumePage />} />
           <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route path="/edit" element={<Edit isAuth={isAuth} />} />

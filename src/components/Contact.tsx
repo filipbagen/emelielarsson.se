@@ -1,5 +1,4 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import SectionLayout from '../components/SectionLayout.tsx';
 import Button from '../components/Button.tsx';
 import useLocalizedContent from '../hooks/useLocalizedContent.ts';
@@ -9,7 +8,6 @@ import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
-  const { t } = useTranslation();
   const { content, loading, error } = useLocalizedContent(
     'websiteContent',
     'contact'

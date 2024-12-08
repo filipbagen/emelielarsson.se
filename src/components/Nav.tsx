@@ -4,7 +4,22 @@ import { Link as ScrollLink } from 'react-scroll';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useLanguage } from '../LanguageContext.tsx';
 
-const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
+interface NavLinkProps {
+  to: string;
+  isScrollLink: boolean;
+  children: React.ReactNode; // children is required here
+  className: string;
+  onClick: () => void;
+  key?: string | number; // key is handled by React internally, no need to use it explicitly
+}
+
+const NavLink = ({
+  to,
+  isScrollLink,
+  children, // children will be passed here
+  className,
+  onClick,
+}: NavLinkProps) => {
   const LinkComponent =
     to === '/resume' ? RouterLink : isScrollLink ? ScrollLink : RouterLink;
   const linkProps =
@@ -19,7 +34,7 @@ const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
       onClick={onClick}
       {...linkProps}
     >
-      {children}
+      {children} {/* The children will be rendered here */}
     </LinkComponent>
   );
 };
@@ -41,6 +56,7 @@ const Nav = () => {
   const linkClass =
     "relative cursor-pointer w-fit block after:block after:content-[''] after:absolute after:h-[3px] after:bg-secondary after:w-full after:scale-x-0 hover:after:scale-x-100 after:transition after:duration-300 after:origin-left after:rounded-full font-semibold";
 
+  // Assuming you have a list of links like this:
   const links = [
     { to: '/', text: currentLang === 'en' ? 'Home' : 'Hem' },
     { to: 'project', text: currentLang === 'en' ? 'Projects' : 'Projekt' },
@@ -73,7 +89,7 @@ const Nav = () => {
             className={linkClass}
             onClick={() => {}}
           >
-            {link.text}
+            {link.text} {/* This is the children prop */}
           </NavLink>
         ))}
         <div
@@ -104,7 +120,7 @@ const Nav = () => {
                 className={linkClass}
                 onClick={toggleMenu}
               >
-                {link.text}
+                {link.text} {/* This is the children prop */}
               </NavLink>
             ))}
             <div
