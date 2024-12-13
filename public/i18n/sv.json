@@ -1,19 +1,18 @@
 {
   "nav": {
     "home": "Hem",
-    "project": "Projekt",
+    "project": "Uppdrag",
     "resume": "CV",
     "contact": "Kontakt"
   },
   "intro": {
     "heading": "Hej",
-    "sub-heading": "Det här är vem jag är och vad jag gör",
-    "body": "Jag är en kreativ språknörd med ett stort intresse för litteratur och kommunikation. Jag har tidigare arbetat med textproduktion, redaktörsarbete, översättning och foto. I nuläget frilansar jag främst som textredaktör och språkgranskare, men jag tar även uppdrag inom textproduktion och översättning. \n\nMina snart fem år på universitetet har resulterat i två kandidatexamen från Språk- och kommunikationsprogrammet, en hel del kurser i litteraturvetenskap och slutligen en fördjupning inom förlagskunskap.",
+    "body": "Jag är en kreativ språknörd med ett stort intresse för litteratur och kommunikation. Jag har tidigare arbetat med textproduktion, redaktörsarbete, översättning och foto. I nuläget frilansar jag främst som textredaktör och språkgranskare, men jag tar även uppdrag inom textproduktion och översättning. \n\nMina fem år på universitetet har resulterat i två kandidatexamen från Språk- och kommunikationsprogrammet, en hel del kurser i litteraturvetenskap och slutligen en fördjupning inom förlagskunskap.",
     "title": "Textredaktör • Skribent • Korrekturläsare"
   },
   "projects": {
-    "title": "Projekt",
-    "body": "Här är några av mina tidigare projekt och arbeten.",
+    "title": "Uppdrag",
+    "body": "Här är några av mina tidigare uppdrag och arbeten.",
     "list": [
       {
         "title": "Textredaktör",
@@ -60,7 +59,7 @@
     "skillsHeader": "Kunskaper",
     "education": [
       {
-        "year": "2024 - pågående",
+        "year": "2024",
         "universityName": "Bazar Förlag",
         "degreeLevel": "Praktik",
         "body": "Detta har fördjupat mina kunskaper inom förlagsverksamheten. Jag har fått arbeta inom både redaktion och marknad och sälj."
@@ -79,7 +78,7 @@
       },
       {
         "year": "2019 - 2022",
-        "universityName": "Mälardales Universitet",
+        "universityName": "Mälardalens Universitet",
         "degreeLevel": "Språk och Kommunikationsprogrammet",
         "body": "Under mitt kandidatprogram valde jag att genomföra dubbla kandidatexamen, vilket resulterade i att jag nu har två filosofie kandidatexamen, en med huvudområdet engelska och en med huvudområdet svenska."
       }

@@ -5,7 +5,7 @@ const buttonStyles = {
   primary:
     'inline-flex items-center justify-center h-10 px-4 bg-secondary text-white rounded-3xl hover:rounded-xl hover:shadow-md transition-all duration-200 cursor-pointer whitespace-nowrap font-semibold',
   secondary:
-    'inline-flex items-center justify-center h-8 px-4 bg-secondary/20 text-[#36413E] rounded-3xl whitespace-nowrap text-xs font-semibold',
+    'inline-flex items-center justify-center h-8 px-4 bg-secondary/20 text-[#36413E] rounded-3xl whitespace-nowrap text-xs font-semibold dark:bg-secondary dark:text-white',
 };
 
 interface ButtonProps {

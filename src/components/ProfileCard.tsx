@@ -35,7 +35,6 @@ const ProfileCard = () => {
 
         <div className="flex flex-col gap-4 w-82 items-start">
           <h1>{t('intro.heading')}</h1>
-          <h4>{t('intro.sub-heading')}</h4>
           <p className="pre-wrap">{t('intro.body')}</p>
 
           <RouterLink to="/resume">
