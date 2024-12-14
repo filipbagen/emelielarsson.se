@@ -1,5 +1,7 @@
-import React, { Suspense } from 'react'; // Import React
+import React, { Suspense, useState } from 'react'; // Import React
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { signOut } from 'firebase/auth';
+import { auth } from './firebase-config.tsx';
 
 // pages
 import Home from './pages/Home.tsx';
@@ -11,6 +13,20 @@ import EditContent from './pages/EditContent.tsx';
 import './App.css';
 
 const App = () => {
+  const [isAuth, setIsAuth] = useState(false);
+
+  const signUserOut = () => {
+    signOut(auth)
+      .then(() => {
+        localStorage.removeItem('isAuth');
+        setIsAuth(false);
+        window.location.pathname = '/';
+      })
+      .catch((error) => {
+        console.error('Sign out error:', error);
+      });
+  };
+
   return (
     <Suspense fallback="loading">
       <BrowserRouter>
@@ -18,14 +34,18 @@ const App = () => {
         <nav>
           <Link to="/">Home</Link>
           <Link to="/edit">Edit</Link>
-          <Link to="/login">Login</Link>
+          {!isAuth ? (
+            <Link to="/login">Login</Link>
+          ) : (
+            <button onClick={signUserOut}>Sign Out</button>
+          )}
         </nav>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="resume" element={<ResumePage />} />
 
           {/* Admin pages */}
-          <Route path="/login" element={<Login />} />
+          <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
           <Route path="/edit" element={<EditContent />} />
         </Routes>
       </BrowserRouter>
