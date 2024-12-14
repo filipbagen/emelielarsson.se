@@ -1,39 +1,17 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { getDocs, collection } from 'firebase/firestore';
-import { db } from '../firebase-config.ts';
 import { useLanguage } from '../context/LanguageContext.tsx';
+import { useFirestoreDoc } from '../hooks/useFirestore.ts';
 
 // components
 import Button from '../components/Button.tsx';
 
 const ProfileCard = () => {
-  const [data, setData] = useState<any>({});
-  const introCollection = collection(db, 'websiteContent');
   const { currentLang } = useLanguage();
+  const { data, loading, error } = useFirestoreDoc('websiteContent', 'intro');
 
-  useEffect(() => {
-    const fetchData = async () => {
-      const querySnapshot = await getDocs(introCollection);
-      const introDoc = querySnapshot.docs.find((doc) => doc.id === 'intro');
-      if (introDoc) {
-        setData(introDoc.data());
-      }
-    };
-
-    fetchData();
-  }, []);
-
-  const formatText = (text: string) => {
-    return text.split('\n').map((line, index) => (
-      <div key={index}>
-        {line}
-        <br />
-      </div>
-    ));
-  };
-
-  console.log(formatText('Hello\nWorld'));
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <div className="flex justify-center sm:h-[80dvh]">
@@ -68,7 +46,7 @@ const ProfileCard = () => {
 
           <RouterLink to="/resume">
             <Button variant="primary">
-              {currentLang == 'en' ? 'Resume' : 'CV'}
+              {currentLang === 'en' ? 'Resume' : 'CV'}
             </Button>
           </RouterLink>
         </div>
