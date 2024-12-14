@@ -1,12 +1,40 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import { getDocs, collection } from 'firebase/firestore';
+import { db } from '../firebase-config.ts';
+import { useLanguage } from '../context/LanguageContext.tsx';
 
 // components
 import Button from '../components/Button.tsx';
 
 const ProfileCard = () => {
-  const { t } = useTranslation();
+  const [data, setData] = useState<any>({});
+  const introCollection = collection(db, 'websiteContent');
+  const { currentLang } = useLanguage();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      const querySnapshot = await getDocs(introCollection);
+      const introDoc = querySnapshot.docs.find((doc) => doc.id === 'intro');
+      if (introDoc) {
+        setData(introDoc.data());
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  const formatText = (text: string) => {
+    return text.split('\n').map((line, index) => (
+      <div key={index}>
+        {line}
+        <br />
+      </div>
+    ));
+  };
+
+  console.log(formatText('Hello\nWorld'));
 
   return (
     <div className="flex justify-center sm:h-[80dvh]">
@@ -29,16 +57,29 @@ const ProfileCard = () => {
             {/* Horizontal line */}
             <div className="h-1 w-14 rounded-full bg-secondary"></div>
 
-            <p className="text-center whitespace-nowrap">{t('intro.title')}</p>
+            <p className="text-center whitespace-nowrap">
+              {data[currentLang]?.title}
+            </p>
           </div>
         </div>
 
         <div className="flex flex-col gap-4 w-82 items-start">
-          <h1>{t('intro.heading')}</h1>
-          <p className="pre-wrap">{t('intro.body')}</p>
+          <h1>{data[currentLang]?.heading}</h1>
+            <div className="flex flex-col gap-4">
+            {data[currentLang]?.body
+              .replace(/\\n/g, '\n')
+              .split('\n\n')
+              .map((paragraph: string) => (
+              <p key={paragraph}>
+                {paragraph}
+              </p>
+              ))}
+            </div>
 
           <RouterLink to="/resume">
-            <Button variant="primary">{t('nav.resume')}</Button>
+            <Button variant="primary">
+              {currentLang == 'en' ? 'Resume' : 'CV'}
+            </Button>
           </RouterLink>
         </div>
       </div>

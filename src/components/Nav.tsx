@@ -3,6 +3,7 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes } from 'react-icons/fa';
+import { useLanguage } from '../context/LanguageContext.tsx';
 
 const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
   const LinkComponent =
@@ -27,9 +28,9 @@ const NavLink = ({ to, isScrollLink, children, className, onClick }) => {
 const Nav = () => {
   const { i18n, t } = useTranslation();
   const location = useLocation();
-  const [currentLang, setCurrentLang] = useState(i18n.language);
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
+  const { currentLang, setCurrentLang } = useLanguage();
 
   useEffect(() => {
     i18n.changeLanguage(currentLang);

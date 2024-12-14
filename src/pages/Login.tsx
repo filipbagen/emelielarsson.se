@@ -1,5 +1,5 @@
 import React from 'react';
-import { auth } from '../firebase-config.tsx';
+import { auth } from '../firebase-config.ts';
 import { signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 
@@ -17,7 +17,7 @@ const Login = ({ setIsAuth }) => {
 
     signInWithEmailAndPassword(auth, username, password)
       .then((userCredential) => {
-        localStorage.setItem("isAuth", "true");
+        localStorage.setItem('isAuth', 'true');
         setIsAuth(true);
         navigate('/edit');
       })
