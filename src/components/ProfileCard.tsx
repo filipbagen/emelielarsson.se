@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
-import { useTranslation } from 'react-i18next';
 import { getDocs, collection } from 'firebase/firestore';
 import { db } from '../firebase-config.ts';
 import { useLanguage } from '../context/LanguageContext.tsx';
@@ -65,16 +64,7 @@ const ProfileCard = () => {
 
         <div className="flex flex-col gap-4 w-82 items-start">
           <h1>{data[currentLang]?.heading}</h1>
-            <div className="flex flex-col gap-4">
-            {data[currentLang]?.body
-              .replace(/\\n/g, '\n')
-              .split('\n\n')
-              .map((paragraph: string) => (
-              <p key={paragraph}>
-                {paragraph}
-              </p>
-              ))}
-            </div>
+          <p className="pre-wrap">{data[currentLang]?.body}</p>
 
           <RouterLink to="/resume">
             <Button variant="primary">
