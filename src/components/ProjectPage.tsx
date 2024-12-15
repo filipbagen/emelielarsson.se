@@ -1,8 +1,8 @@
-// ProjectPage.tsx
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import ProjectCard from '../components/ProjectCard.tsx';
 import SectionLayout from '../components/SectionLayout.tsx';
+import { useLanguage } from '../context/LanguageContext.tsx';
+import { useFirestoreDoc } from '../hooks/useFirestore.ts';
 
 export interface Project {
   title: string;
@@ -12,13 +12,19 @@ export interface Project {
 }
 
 const ProjectPage: React.FC = () => {
-  const { t } = useTranslation();
-  const projects = t('projects.list', { returnObjects: true }) as Project[];
+  const { currentLang } = useLanguage();
+  const { data, loading, error } = useFirestoreDoc(
+    'websiteContent',
+    'projects'
+  );
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
   return (
     <SectionLayout
-      title={t('projects.title')}
-      description={t('projects.body')}
+      title={data[currentLang]?.title}
+      description={data[currentLang]?.body}
       content={
         <div className="flex flex-col gap-16 w-full relative max-w-6xl mx-auto py-14">
           {/* Background div for all projects */}
@@ -26,7 +32,7 @@ const ProjectPage: React.FC = () => {
           <div className="absolute inset-0 w-[calc(100%] h-full bg-white dark:bg-black z-[-1] left-[-2rem] -right-[2rem] rounded-[38px] sm:w-[250%] sm:rounded-r-[180px] shadow-inner-lg sm:transform sm:-translate-x-1/2"></div>
 
           {/* Projects */}
-          {projects.map((project) => (
+          {data[currentLang]?.list.map((project: Project) => (
             <div key={project.title} className="bg-transparent">
               <ProjectCard project={project} />
             </div>
