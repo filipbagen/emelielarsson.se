@@ -3,12 +3,13 @@ import { useNavigate } from 'react-router-dom';
 import SectionSwitcher from '../components/SectionSwitcher.tsx';
 import IntroEditor from '../components/edit/IntroEditor.tsx';
 import ProjectsEditor from '../components/edit/ProjectsEditor.tsx';
+import ResumeEditor from '../components/edit/ResumeEditor.tsx';
 
 const EditContent = ({ isAuth }: { isAuth: boolean }) => {
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState<'intro' | 'projects'>(
-    'intro'
-  );
+  const [activeSection, setActiveSection] = useState<
+    'intro' | 'projects' | 'resume'
+  >('intro');
 
   React.useEffect(() => {
     if (!isAuth) {
@@ -22,15 +23,18 @@ const EditContent = ({ isAuth }: { isAuth: boolean }) => {
         return <IntroEditor />;
       case 'projects':
         return <ProjectsEditor />;
+      case 'resume':
+        return <ResumeEditor />;
       default:
         return null;
     }
   };
 
   return (
-    <div>
+    // How do I style?
+    <div className="">
       <SectionSwitcher
-        sections={['intro', 'projects']}
+        sections={['intro', 'projects', 'resume']}
         activeSection={activeSection}
         onSwitch={setActiveSection}
       />
