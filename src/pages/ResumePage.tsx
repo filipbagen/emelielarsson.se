@@ -1,14 +1,14 @@
-import React, { useState } from 'react';
-import { useTranslation } from 'react-i18next';
-import MainLayout from '../components/MainLayout.tsx';
+import React, { useEffect } from 'react';
 import SectionLayout from '../components/SectionLayout.tsx';
 import Button from '../components/Button.tsx';
+import { useLanguage } from '../context/LanguageContext.tsx';
+import { useFirestoreDoc } from '../hooks/useFirestore.ts';
 
 // Define the interfaces for the structure of your resume data
 interface EducationEntry {
   year: string;
-  universityName: string; // Note: Use the same key as in your JSON
-  degreeLevel: string; // Note: Use the same key as in your JSON
+  universityName: string;
+  degreeLevel: string;
   body: string;
 }
 
@@ -19,138 +19,147 @@ interface ExperienceEntry {
   body: string;
 }
 
-// Define the ResumeData interface that includes education and experience arrays
-interface ResumeData {
-  title: string;
-  body: string;
-  resume: string;
-  educationHeader: string;
-  experienceHeader: string;
-  skillsHeader: string;
-  education: EducationEntry[];
-  experience: ExperienceEntry[];
-  skills: string[];
-}
-
 const ResumePage = () => {
-  const { t, i18n } = useTranslation();
-  const [language] = useState(i18n.language);
-  const resumeData = t('resume', { returnObjects: true }) as ResumeData;
-  const educationList = resumeData.education;
-  const experienceList = resumeData.experience;
-  const skillsList: string[] = resumeData.skills;
+  const { currentLang } = useLanguage();
+  const { data, loading, error } = useFirestoreDoc('websiteContent', 'resume');
 
-  React.useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            entry.target.classList.remove(
-              'opacity-0',
-              'blur',
-              'translate-y-full'
-            );
-            entry.target.classList.add(
-              'opacity-100',
-              'translate-x-0',
-              'no-blur'
-            );
-          }
-        });
-      },
-      {
-        threshold: 0.0, // Adjust this to control when the animation starts
-        rootMargin: '120px', // Optionally, adjust the root margin if needed
-      }
+  useEffect(() => {
+    // Only run the intersection observer setup after data is loaded
+    if (data && data[currentLang]) {
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              entry.target.classList.remove(
+                'opacity-0',
+                'blur',
+                'translate-y-full'
+              );
+              entry.target.classList.add(
+                'opacity-100',
+                'translate-x-0',
+                'no-blur'
+              );
+            }
+          });
+        },
+        {
+          threshold: 0.0,
+          rootMargin: '120px',
+        }
+      );
+
+      const hiddenElements = document.querySelectorAll('.hide');
+      hiddenElements.forEach((el) => observer.observe(el));
+
+      return () => {
+        hiddenElements.forEach((el) => observer.unobserve(el));
+      };
+    }
+  }, [data, currentLang]); // Add dependencies to re-run when data or language changes
+
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
+
+  // Render Education Entries
+  const renderEducation = () => {
+    return data[currentLang].Education.map(
+      (entry: EducationEntry, index: number) => (
+        <div
+          key={`edu-${index}`}
+          className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none"
+        >
+          <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
+            <div className="flex flex-col gap-2 min-w-[212px]">
+              <h3 className="text-secondary whitespace-nowrap">{entry.year}</h3>
+              <p className="font-semibold">{entry.universityName}</p>
+              <p>{entry.degreeLevel}</p>
+            </div>
+            <div>
+              <p>{entry.body}</p>
+            </div>
+          </div>
+        </div>
+      )
     );
+  };
 
-    const hiddenElements = document.querySelectorAll('.hide');
-    hiddenElements.forEach((el) => observer.observe(el));
+  // Render Experience Entries
+  const renderExperience = () => {
+    return data[currentLang].ExperienceEntry.map(
+      (entry: ExperienceEntry, index: number) => (
+        <div
+          key={`exp-${index}`}
+          className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out"
+        >
+          <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
+            <div className="flex flex-col gap-2 min-w-[212px]">
+              <h3 className="text-secondary">{entry.year}</h3>
+              <p className="font-semibold">{entry.position}</p>
+              <p>{entry.company}</p>
+            </div>
+            <div>
+              <p>{entry.body}</p>
+            </div>
+          </div>
+        </div>
+      )
+    );
+  };
 
-    return () => {
-      hiddenElements.forEach((el) => observer.unobserve(el));
-    };
-  }, []);
+  // Render Skills
+  const renderSkills = () => {
+    return (
+      <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out">
+        <ul className="grid grid-cols-3 gap-4 list-disc bg-white dark:bg-black p-14 rounded-lg">
+          {data[currentLang].skills.map((skill: string) => (
+            <li key={skill}>{skill}</li>
+          ))}
+        </ul>
+      </div>
+    );
+  };
 
   // Prepare the content for the section
   const content = (
     <>
       <div className="flex flex-col gap-8">
         <div className="flex flex-end justify-between">
-          <h2>{t('resume.educationHeader')}</h2>
-
           <Button
             variant="primary"
             href={`${process.env.PUBLIC_URL}/assets/data/emelie_larsson_resume.pdf`}
           >
-            {t('resume.resume')}
+            {data[currentLang].resume}
           </Button>
         </div>
-        {educationList.map((edu, index) => (
-          <div
-            key={`${index}-${language}`}
-            className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out filter-none"
-          >
-            <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
-              {/* Static content mimicking dynamic content */}
-              <div className="flex flex-col gap-2 min-w-[212px]">
-                <h3 className="text-secondary whitespace-nowrap">{edu.year}</h3>
-                <p className="font-semibold">{edu.universityName}</p>
-                <p>{edu.degreeLevel}</p>
-              </div>
 
-              <div>
-                <p>{edu.body}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+        {/* Education Section */}
+        <div className="flex flex-col gap-4">
+          <h2>{data[currentLang].educationHeader}</h2>
+          {renderEducation()}
+        </div>
 
-      <div className="flex flex-col gap-4">
-        <h2>{t('resume.experienceHeader')}</h2>
-        {experienceList.map((exp, index) => (
-          <div
-            key={`${index}-${language}`}
-            className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out"
-          >
-            <div className="flex flex-col sm:flex-row sm:gap-16 gap-8 bg-white dark:bg-black p-14 rounded-lg">
-              <div className="flex flex-col gap-2 min-w-[212px]">
-                <h3 className="text-secondary">{exp.year}</h3>
-                <p className="font-semibold">{exp.position}</p>
-                <p>{exp.company}</p>
-              </div>
+        {/* Experience Section */}
+        <div className="flex flex-col gap-4">
+          <h2>{data[currentLang].experienceHeader}</h2>
+          {renderExperience()}
+        </div>
 
-              <div>
-                <p>{exp.body}</p>
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <div className="flex flex-col gap-4">
-        <h2>{t('resume.skillsHeader')}</h2>
-        <div className="hide opacity-0 blur translate-y-full transition-all duration-500 ease-in-out">
-          <ul className="grid grid-cols-3 gap-4 list-disc bg-white dark:bg-black p-14 rounded-lg">
-            {skillsList.map((skill) => (
-              <li key={skill}>{skill}</li>
-            ))}
-          </ul>
+        {/* Skills Section */}
+        <div className="flex flex-col gap-4">
+          <h2>{data[currentLang].skillsHeader}</h2>
+          {renderSkills()}
         </div>
       </div>
     </>
   );
 
-  // flex flex-wrap justify-between gap-4
   return (
-    <MainLayout>
-      <SectionLayout
-        title={resumeData.title}
-        description={resumeData.body}
-        content={content}
-      />
-    </MainLayout>
+    <SectionLayout
+      title={data[currentLang].title}
+      description={data[currentLang].body}
+      content={content}
+    />
   );
 };
 

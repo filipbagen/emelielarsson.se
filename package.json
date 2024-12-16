@@ -53,6 +53,7 @@
     ]
   },
   "devDependencies": {
+    "@types/node": "^22.10.2",
     "@types/react-scroll": "^1.8.10",
     "gh-pages": "^6.1.1",
     "tailwindcss": "^3.4.1"

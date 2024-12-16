@@ -3,6 +3,7 @@ import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
 import { LanguageProvider } from './context/LanguageContext.tsx';
+import MainLayout from './components/MainLayout.tsx';
 
 // pages
 import Home from './pages/Home.tsx';
@@ -32,24 +33,25 @@ const App = () => {
     <Suspense fallback="loading">
       <LanguageProvider>
         <BrowserRouter>
-          {/* TODO: Move Nav.tsx to HTML nav */}
-          <nav>
-            <Link to="/">Home</Link>
-            <Link to="/edit">Edit</Link>
-            {!isAuth ? (
-              <Link to="/login">Login</Link>
-            ) : (
-              <button onClick={signUserOut}>Sign Out</button>
-            )}
-          </nav>
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="resume" element={<ResumePage />} />
+          <MainLayout>
+            {/* TODO: Move Nav.tsx to HTML nav */}
+            <nav>
+              <Link to="/edit">Edit</Link>
+              {!isAuth ? (
+                <Link to="/login">Login</Link>
+              ) : (
+                <button onClick={signUserOut}>Sign Out</button>
+              )}
+            </nav>
+            <Routes>
+              <Route path="/" element={<Home />} />
+              <Route path="resume" element={<ResumePage />} />
 
-            {/* Admin pages */}
-            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-            <Route path="/edit" element={<EditContent isAuth={isAuth} />} />
-          </Routes>
+              {/* Admin pages */}
+              <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+              <Route path="/edit" element={<EditContent isAuth={isAuth} />} />
+            </Routes>
+          </MainLayout>
         </BrowserRouter>
       </LanguageProvider>
     </Suspense>
