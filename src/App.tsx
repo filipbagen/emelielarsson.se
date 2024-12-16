@@ -33,25 +33,23 @@ const App = () => {
     <Suspense fallback="loading">
       <LanguageProvider>
         <BrowserRouter>
-          <MainLayout>
-            {/* TODO: Move Nav.tsx to HTML nav */}
-            <nav>
-              <Link to="/edit">Edit</Link>
-              {!isAuth ? (
-                <Link to="/login">Login</Link>
-              ) : (
-                <button onClick={signUserOut}>Sign Out</button>
-              )}
-            </nav>
-            <Routes>
-              <Route path="/" element={<Home />} />
-              <Route path="resume" element={<ResumePage />} />
+          {/* TODO: Move Nav.tsx to HTML nav */}
+          <nav>
+            <Link to="/edit">Edit</Link>
+            {!isAuth ? (
+              <Link to="/login">Login</Link>
+            ) : (
+              <button onClick={signUserOut}>Sign Out</button>
+            )}
+          </nav>
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="resume" element={<ResumePage />} />
 
-              {/* Admin pages */}
-              <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-              <Route path="/edit" element={<EditContent isAuth={isAuth} />} />
-            </Routes>
-          </MainLayout>
+            {/* Admin pages */}
+            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+            <Route path="/edit" element={<EditContent isAuth={isAuth} />} />
+          </Routes>
         </BrowserRouter>
       </LanguageProvider>
     </Suspense>

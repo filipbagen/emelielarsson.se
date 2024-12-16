@@ -3,6 +3,7 @@ import SectionLayout from '../components/SectionLayout.tsx';
 import Button from '../components/Button.tsx';
 import { useLanguage } from '../context/LanguageContext.tsx';
 import { useFirestoreDoc } from '../hooks/useFirestore.ts';
+import MainLayout from '../components/MainLayout.tsx';
 
 // Define the interfaces for the structure of your resume data
 interface EducationEntry {
@@ -155,11 +156,13 @@ const ResumePage = () => {
   );
 
   return (
-    <SectionLayout
-      title={data[currentLang].title}
-      description={data[currentLang].body}
-      content={content}
-    />
+    <MainLayout>
+      <SectionLayout
+        title={data[currentLang].title}
+        description={data[currentLang].body}
+        content={content}
+      />
+    </MainLayout>
   );
 };
 

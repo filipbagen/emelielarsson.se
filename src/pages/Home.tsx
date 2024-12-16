@@ -7,6 +7,7 @@ import Contact from '../components/Contact.tsx';
 
 import { useEffect } from 'react';
 import { Element, scroller } from 'react-scroll';
+import MainLayout from '../components/MainLayout.tsx';
 
 const Home = () => {
   useEffect(() => {
@@ -21,7 +22,7 @@ const Home = () => {
   }, []);
 
   return (
-    <>
+    <MainLayout>
       <ProfileCard />
 
       <Element name="project">
@@ -31,7 +32,7 @@ const Home = () => {
       <Element name="contact">
         <Contact />
       </Element>
-    </>
+    </MainLayout>
   );
 };
 
