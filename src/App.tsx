@@ -1,9 +1,8 @@
-import React, { Suspense, useState } from 'react'; // Import React
+import React, { Suspense, useState, useEffect } from 'react'; // Import React
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
 import { LanguageProvider } from './context/LanguageContext.tsx';
-import MainLayout from './components/MainLayout.tsx';
 
 // pages
 import Home from './pages/Home.tsx';
@@ -16,6 +15,13 @@ import './App.css';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+    const authStatus = localStorage.getItem('isAuth');
+    if (authStatus === 'true') {
+      setIsAuth(true);
+    }
+  }, []);
 
   const signUserOut = () => {
     signOut(auth)
@@ -43,6 +49,7 @@ const App = () => {
             )}
           </nav>
           <Routes>
+            {/* Public pages */}
             <Route path="/" element={<Home />} />
             <Route path="resume" element={<ResumePage />} />
 

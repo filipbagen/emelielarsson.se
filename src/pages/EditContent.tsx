@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import SectionSwitcher from '../components/SectionSwitcher.tsx';
 import IntroEditor from '../components/edit/IntroEditor.tsx';
@@ -11,11 +11,13 @@ const EditContent = ({ isAuth }: { isAuth: boolean }) => {
     'intro' | 'projects' | 'resume'
   >('intro');
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (!isAuth) {
       navigate('/login');
     }
   }, [isAuth, navigate]);
+
+  console.log('isAuth', isAuth);
 
   const renderEditor = () => {
     switch (activeSection) {
@@ -32,7 +34,7 @@ const EditContent = ({ isAuth }: { isAuth: boolean }) => {
 
   return (
     // How do I style?
-    <div className="">
+    <div className="max-w-6xl mx-auto p-6">
       <SectionSwitcher
         sections={['intro', 'projects', 'resume']}
         activeSection={activeSection}
