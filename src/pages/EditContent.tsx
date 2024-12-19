@@ -13,9 +13,7 @@ const EditContent = ({
   isLoading: boolean;
 }) => {
   const navigate = useNavigate();
-  const [activeSection, setActiveSection] = useState<
-    'Intro' | 'Projects' | 'Resume'
-  >('Intro');
+  const [activeSection, setActiveSection] = useState('Intro' as string);
 
   useEffect(() => {
     // Only redirect if we're not loading and not authenticated
@@ -43,7 +41,7 @@ const EditContent = ({
   }
 
   return (
-    <div className="max-w-6xl mx-auto p-6">
+    <div className="mx-auto">
       <SectionSwitcher
         sections={['Intro', 'Projects', 'Resume']}
         activeSection={activeSection}

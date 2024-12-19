@@ -84,10 +84,7 @@ const ProjectsEditor = () => {
     <div>
       <div className="flex flex-row gap-6 justify-center">
         {Object.keys(editedData || {}).map((lang) => (
-          <div
-            key={lang}
-            className="bg-gray-50 p-6 rounded-lg shadow-md w-full"
-          >
+          <div key={lang} className="p-6 rounded-lg shadow-md w-full">
             <h2 className="text-2xl font-semibold mb-4">
               {lang.toUpperCase()} Section
             </h2>
@@ -222,9 +219,11 @@ const ProjectsEditor = () => {
         ))}
       </div>
 
-      <Button variant="primary" onClick={handleSave}>
-        Save Projects
-      </Button>
+      <div className="mt-4">
+        <Button variant="primary" onClick={handleSave}>
+          Save Projects
+        </Button>
+      </div>
     </div>
   );
 };

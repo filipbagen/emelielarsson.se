@@ -18,7 +18,7 @@ interface ExperienceEntry {
 
 const ResumeEditor = () => {
   const resumeDoc = useFirestoreDoc('websiteContent', 'resume');
-  const [editedData, setEditedData] = useState<any>(null);
+  const [editedData, setEditedData] = useState(null);
 
   useEffect(() => {
     if (resumeDoc.data) {
@@ -455,9 +455,11 @@ const ResumeEditor = () => {
         ))}
       </div>
 
-      <Button variant="primary" onClick={handleSave}>
-        Save Resume
-      </Button>
+      <div className="mt-4">
+        <Button variant="primary" onClick={handleSave}>
+          Save Resume
+        </Button>
+      </div>
     </div>
   );
 };

@@ -7,14 +7,9 @@ interface SectionSwitcherProps {
   onSwitch: (section: string) => void;
 }
 
-const SectionSwitcher: React.FC<SectionSwitcherProps> = ({
-  sections,
-  activeSection,
-  onSwitch,
-}) => {
-
+const SectionSwitcher = ({ sections, activeSection, onSwitch }) => {
   return (
-    <div className="flex gap-8">
+    <div className="flex gap-8 mb-4">
       {sections.map((section: string) => (
         <button
           key={section}

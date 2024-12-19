@@ -1,8 +1,10 @@
 import React, { Suspense, useState, useEffect } from 'react';
-import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
 import { LanguageProvider } from './context/LanguageContext.tsx';
+import AdminNav from './components/AdminNav.tsx';
+import MainLayout from './components/MainLayout.tsx';
 
 // pages
 import Home from './pages/Home.tsx';
@@ -10,20 +12,18 @@ import ResumePage from './pages/ResumePage.tsx';
 import Login from './pages/Login.tsx';
 import EditContent from './pages/EditContent.tsx';
 
-// styles
-import './App.css';
-
-const App = () => {
+const AppContent = () => {
   const [isAuth, setIsAuth] = useState(false);
-  const [isLoading, setIsLoading] = useState(true); // Add loading state
+  const [isLoading, setIsLoading] = useState(true);
+  const location = useLocation();
+  const isAdminRoute = location.pathname === '/edit';
 
   useEffect(() => {
     const authStatus = localStorage.getItem('isAuth');
     if (authStatus === 'true') {
-      console.log('User is authenticated');
       setIsAuth(true);
     }
-    setIsLoading(false); // Mark loading as complete
+    setIsLoading(false);
   }, []);
 
   const signUserOut = () => {
@@ -39,33 +39,41 @@ const App = () => {
   };
 
   if (isLoading) {
-    return <div>Loading...</div>; // Or your preferred loading component
+    return <div>Loading...</div>;
   }
 
-  return (
-    <Suspense fallback="loading">
-      <LanguageProvider>
-        <BrowserRouter>
-          <nav>
-            <Link to="/edit">Edit</Link>
-            {!isAuth ? (
-              <Link to="/login">Login</Link>
-            ) : (
-              <button onClick={signUserOut}>Sign Out</button>
-            )}
-          </nav>
+  // Render different layouts based on route
+  if (isAdminRoute && isAuth) {
+    return (
+      <div className="flex flex-col items-center w-screen min-h-screen">
+        <div className="w-full max-w-[1242px] p-8">
+          <AdminNav onSignOut={signUserOut} />
           <Routes>
-            {/* Public pages */}
-            <Route path="/" element={<Home />} />
-            <Route path="resume" element={<ResumePage />} />
-
-            {/* Admin pages */}
-            <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
             <Route
               path="/edit"
               element={<EditContent isAuth={isAuth} isLoading={isLoading} />}
             />
           </Routes>
+        </div>
+      </div>
+    );
+  }
+
+  return (
+    <Routes>
+      <Route path="/" element={<Home />} />
+      <Route path="resume" element={<ResumePage />} />
+      <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+    </Routes>
+  );
+};
+
+const App = () => {
+  return (
+    <Suspense fallback="loading">
+      <LanguageProvider>
+        <BrowserRouter>
+          <AppContent />
         </BrowserRouter>
       </LanguageProvider>
     </Suspense>
