@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react'; // Import React
+import React, { Suspense, useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, Link } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
@@ -15,12 +15,15 @@ import './App.css';
 
 const App = () => {
   const [isAuth, setIsAuth] = useState(false);
+  const [isLoading, setIsLoading] = useState(true); // Add loading state
 
   useEffect(() => {
     const authStatus = localStorage.getItem('isAuth');
     if (authStatus === 'true') {
+      console.log('User is authenticated');
       setIsAuth(true);
     }
+    setIsLoading(false); // Mark loading as complete
   }, []);
 
   const signUserOut = () => {
@@ -35,11 +38,14 @@ const App = () => {
       });
   };
 
+  if (isLoading) {
+    return <div>Loading...</div>; // Or your preferred loading component
+  }
+
   return (
     <Suspense fallback="loading">
       <LanguageProvider>
         <BrowserRouter>
-          {/* TODO: Move Nav.tsx to HTML nav */}
           <nav>
             <Link to="/edit">Edit</Link>
             {!isAuth ? (
@@ -55,7 +61,10 @@ const App = () => {
 
             {/* Admin pages */}
             <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
-            <Route path="/edit" element={<EditContent isAuth={isAuth} />} />
+            <Route
+              path="/edit"
+              element={<EditContent isAuth={isAuth} isLoading={isLoading} />}
+            />
           </Routes>
         </BrowserRouter>
       </LanguageProvider>

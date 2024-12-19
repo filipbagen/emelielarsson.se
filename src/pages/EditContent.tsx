@@ -5,19 +5,24 @@ import IntroEditor from '../components/edit/IntroEditor.tsx';
 import ProjectsEditor from '../components/edit/ProjectsEditor.tsx';
 import ResumeEditor from '../components/edit/ResumeEditor.tsx';
 
-const EditContent = ({ isAuth }: { isAuth: boolean }) => {
+const EditContent = ({
+  isAuth,
+  isLoading,
+}: {
+  isAuth: boolean;
+  isLoading: boolean;
+}) => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<
     'intro' | 'projects' | 'resume'
   >('intro');
 
   useEffect(() => {
-    if (!isAuth) {
+    // Only redirect if we're not loading and not authenticated
+    if (!isLoading && !isAuth) {
       navigate('/login');
     }
-  }, [isAuth, navigate]);
-
-  console.log('isAuth', isAuth);
+  }, [isAuth, isLoading, navigate]);
 
   const renderEditor = () => {
     switch (activeSection) {
@@ -32,11 +37,15 @@ const EditContent = ({ isAuth }: { isAuth: boolean }) => {
     }
   };
 
+  // If still loading, return nothing or a loading indicator
+  if (isLoading) {
+    return null;
+  }
+
   return (
-    // How do I style?
     <div className="max-w-6xl mx-auto p-6">
       <SectionSwitcher
-        sections={['intro', 'projects', 'resume']}
+        sections={['Intro', 'Projects', 'Resume']}
         activeSection={activeSection}
         onSwitch={setActiveSection}
       />
