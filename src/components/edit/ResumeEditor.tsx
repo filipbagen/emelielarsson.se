@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestoreDoc } from '../../hooks/useFirestore.ts';
+import Button from '../Button.tsx';
 
 interface EducationEntry {
   universityName: string;
@@ -155,7 +156,7 @@ const ResumeEditor = () => {
         {Object.keys(editedData || {}).map((lang) => (
           <div
             key={lang}
-            className="bg-gray-50 p-6 rounded-lg shadow-md w-full"
+            className="bg-primary p-6 rounded-lg shadow-md w-full"
           >
             <h2 className="text-2xl font-semibold mb-4">
               {lang.toUpperCase()} Resume
@@ -185,20 +186,19 @@ const ResumeEditor = () => {
             <div className="mb-8">
               <div className="flex justify-between items-center mb-4">
                 <h3 className="text-xl font-semibold">Education</h3>
-                <button
-                  type="button"
+                <Button
+                  variant="primary"
                   onClick={() => addEducationEntry(lang)}
-                  className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
                 >
                   + Add Education
-                </button>
+                </Button>
               </div>
 
               {editedData[lang].Education.map(
                 (entry: EducationEntry, index: number) => (
                   <div
                     key={index}
-                    className="bg-white border rounded-lg p-6 mb-4 relative"
+                    className="bg-white rounded-lg p-6 mb-4 relative"
                   >
                     <button
                       type="button"
@@ -283,7 +283,7 @@ const ResumeEditor = () => {
               </label>
               <input
                 type="text"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 rounded"
                 value={editedData[lang].experienceHeader}
                 onChange={(e) =>
                   setEditedData((prev: any) => ({
@@ -313,7 +313,7 @@ const ResumeEditor = () => {
                 (entry: ExperienceEntry, index: number) => (
                   <div
                     key={index}
-                    className="bg-white border rounded-lg p-6 mb-4 relative"
+                    className="bg-white rounded-lg p-6 mb-4 relative"
                   >
                     <button
                       type="button"
@@ -397,7 +397,7 @@ const ResumeEditor = () => {
               <label className="block mb-2 font-medium">Skills Header:</label>
               <input
                 type="text"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 rounded"
                 value={editedData[lang].skillsHeader}
                 onChange={(e) =>
                   setEditedData((prev: any) => ({
@@ -415,7 +415,7 @@ const ResumeEditor = () => {
               <label className="block mb-2 font-medium">Skills:</label>
               <input
                 type="text"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 rounded"
                 value={editedData[lang].skills.join(', ')}
                 onChange={(e) =>
                   setEditedData((prev: any) => ({
@@ -438,7 +438,7 @@ const ResumeEditor = () => {
               </label>
               <input
                 type="text"
-                className="w-full p-2 border rounded"
+                className="w-full p-2 rounded"
                 value={editedData[lang].resume}
                 onChange={(e) =>
                   setEditedData((prev: any) => ({
@@ -455,12 +455,9 @@ const ResumeEditor = () => {
         ))}
       </div>
 
-      <button
-        onClick={handleSave}
-        className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 mt-6"
-      >
+      <Button variant="primary" onClick={handleSave}>
         Save Resume
-      </button>
+      </Button>
     </div>
   );
 };

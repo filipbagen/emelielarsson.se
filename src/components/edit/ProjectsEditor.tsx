@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestoreDoc } from '../../hooks/useFirestore.ts';
 import { Project } from '../../types/content';
+import Button from '../Button.tsx';
 
 const ProjectsEditor = () => {
   const projectsDoc = useFirestoreDoc('websiteContent', 'projects');
@@ -80,150 +81,150 @@ const ProjectsEditor = () => {
   if (projectsDoc.error) return <div>Error loading projects content.</div>;
 
   return (
-    <div className="flex flex-row gap-6 justify-center">
-      {Object.keys(editedData || {}).map((lang) => (
-        <div key={lang} className="bg-gray-50 p-6 rounded-lg shadow-md w-full">
-          <h2 className="text-2xl font-semibold mb-4">
-            {lang.toUpperCase()} Section
-          </h2>
-          <div className="grid md:grid-cols-2 gap-4 mb-6">
-            <div>
-              <label className="block mb-2 font-medium">Title:</label>
-              <input
-                type="text"
-                className="w-full p-2 border rounded"
-                value={editedData[lang].title}
-                onChange={(e) =>
-                  setEditedData((prev: any) => ({
-                    ...prev,
-                    [lang]: {
-                      ...prev[lang],
-                      title: e.target.value,
-                    },
-                  }))
-                }
-              />
-            </div>
-            <div>
-              <label className="block mb-2 font-medium">Description:</label>
-              <textarea
-                className="w-full p-2 border rounded"
-                value={editedData[lang].body}
-                onChange={(e) =>
-                  setEditedData((prev: any) => ({
-                    ...prev,
-                    [lang]: {
-                      ...prev[lang],
-                      body: e.target.value,
-                    },
-                  }))
-                }
-              />
-            </div>
-          </div>
-
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h3 className="text-xl font-semibold">Projects</h3>
-              <button
-                type="button"
-                onClick={() => addProject(lang)}
-                className="bg-green-500 text-white px-4 py-2 rounded hover:bg-green-600"
-              >
-                + Add Project
-              </button>
+    <div>
+      <div className="flex flex-row gap-6 justify-center">
+        {Object.keys(editedData || {}).map((lang) => (
+          <div
+            key={lang}
+            className="bg-gray-50 p-6 rounded-lg shadow-md w-full"
+          >
+            <h2 className="text-2xl font-semibold mb-4">
+              {lang.toUpperCase()} Section
+            </h2>
+            <div className="grid md:grid-cols-2 gap-4 mb-6">
+              <div>
+                <label className="block mb-2 font-medium">Title:</label>
+                <input
+                  type="text"
+                  className="w-full p-2 border rounded"
+                  value={editedData[lang].title}
+                  onChange={(e) =>
+                    setEditedData((prev: any) => ({
+                      ...prev,
+                      [lang]: {
+                        ...prev[lang],
+                        title: e.target.value,
+                      },
+                    }))
+                  }
+                />
+              </div>
+              <div>
+                <label className="block mb-2 font-medium">Description:</label>
+                <textarea
+                  className="w-full p-2 border rounded"
+                  value={editedData[lang].body}
+                  onChange={(e) =>
+                    setEditedData((prev: any) => ({
+                      ...prev,
+                      [lang]: {
+                        ...prev[lang],
+                        body: e.target.value,
+                      },
+                    }))
+                  }
+                />
+              </div>
             </div>
 
-            {editedData[lang].list.map(
-              (project: Project, projectIndex: number) => (
-                <div
-                  key={projectIndex}
-                  className="bg-white border rounded-lg p-6 relative"
-                >
-                  <button
-                    type="button"
-                    onClick={() => removeProject(lang, projectIndex)}
-                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+            <div className="space-y-6">
+              <div className="flex justify-between items-center">
+                <h3 className="text-xl font-semibold">Projects</h3>
+
+                <Button variant="primary" onClick={() => addProject(lang)}>
+                  + Add Project
+                </Button>
+              </div>
+
+              {editedData[lang].list.map(
+                (project: Project, projectIndex: number) => (
+                  <div
+                    key={projectIndex}
+                    className="bg-white border rounded-lg p-6 relative"
                   >
-                    ❌
-                  </button>
-                  <div className="grid md:grid-cols-2 gap-4">
-                    <div>
-                      <label className="block mb-2">Title:</label>
-                      <input
-                        type="text"
-                        className="w-full p-2 border rounded"
-                        value={project.title}
-                        onChange={(e) =>
-                          handleProjectChange(
-                            lang,
-                            projectIndex,
-                            'title',
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                    <div>
-                      <label className="block mb-2">Name:</label>
-                      <input
-                        type="text"
-                        className="w-full p-2 border rounded"
-                        value={project.name}
-                        onChange={(e) =>
-                          handleProjectChange(
-                            lang,
-                            projectIndex,
-                            'name',
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="col-span-full">
-                      <label className="block mb-2">Tags:</label>
-                      <input
-                        type="text"
-                        className="w-full p-2 border rounded"
-                        value={project.tags.join(', ')}
-                        onChange={(e) =>
-                          handleProjectChange(
-                            lang,
-                            projectIndex,
-                            'tags',
-                            e.target.value
-                          )
-                        }
-                      />
-                    </div>
-                    <div className="col-span-full">
-                      <label className="block mb-2">Description:</label>
-                      <textarea
-                        className="w-full p-2 border rounded"
-                        value={project.description}
-                        onChange={(e) =>
-                          handleProjectChange(
-                            lang,
-                            projectIndex,
-                            'description',
-                            e.target.value
-                          )
-                        }
-                      />
+                    <button
+                      type="button"
+                      onClick={() => removeProject(lang, projectIndex)}
+                      className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                    >
+                      ❌
+                    </button>
+                    <div className="grid md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block mb-2">Title:</label>
+                        <input
+                          type="text"
+                          className="w-full p-2 border rounded"
+                          value={project.title}
+                          onChange={(e) =>
+                            handleProjectChange(
+                              lang,
+                              projectIndex,
+                              'title',
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                      <div>
+                        <label className="block mb-2">Name:</label>
+                        <input
+                          type="text"
+                          className="w-full p-2 border rounded"
+                          value={project.name}
+                          onChange={(e) =>
+                            handleProjectChange(
+                              lang,
+                              projectIndex,
+                              'name',
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                      <div className="col-span-full">
+                        <label className="block mb-2">Tags:</label>
+                        <input
+                          type="text"
+                          className="w-full p-2 border rounded"
+                          value={project.tags.join(', ')}
+                          onChange={(e) =>
+                            handleProjectChange(
+                              lang,
+                              projectIndex,
+                              'tags',
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
+                      <div className="col-span-full">
+                        <label className="block mb-2">Description:</label>
+                        <textarea
+                          className="w-full p-2 border rounded"
+                          value={project.description}
+                          onChange={(e) =>
+                            handleProjectChange(
+                              lang,
+                              projectIndex,
+                              'description',
+                              e.target.value
+                            )
+                          }
+                        />
+                      </div>
                     </div>
                   </div>
-                </div>
-              )
-            )}
+                )
+              )}
+            </div>
           </div>
-        </div>
-      ))}
-      <button
-        onClick={handleSave}
-        className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 mt-6"
-      >
+        ))}
+      </div>
+
+      <Button variant="primary" onClick={handleSave}>
         Save Projects
-      </button>
+      </Button>
     </div>
   );
 };
