@@ -4,6 +4,7 @@ import { Link as ScrollLink } from 'react-scroll';
 import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext.tsx';
+import { underlineAnimation } from './styles/animation.ts';
 
 // Define proper types for props and links
 interface NavLinkProps {
@@ -14,7 +15,7 @@ interface NavLinkProps {
   onClick?: () => void;
 }
 
-interface NavLink {
+interface NavLinkType {
   to: string;
   text: string;
 }
@@ -59,7 +60,7 @@ const Nav: React.FC = () => {
   const { currentLang, setCurrentLang } = useLanguage();
 
   // Extract links configuration
-  const links: NavLink[] = [
+  const links: NavLinkType[] = [
     { to: '/', text: 'nav.home' },
     { to: 'project', text: 'nav.project' },
     { to: '/resume', text: 'nav.resume' },
@@ -95,14 +96,6 @@ const Nav: React.FC = () => {
   };
 
   // Extract styles to constants
-  const linkClass = `
-    relative cursor-pointer w-fit block 
-    after:block after:content-[''] after:absolute after:h-[3px] 
-    after:bg-secondary after:w-full after:scale-x-0 
-    hover:after:scale-x-100 after:transition after:duration-300 
-    after:origin-left after:rounded-full font-semibold
-  `.trim();
-
   const mobileMenuClass = `
     w-[300px] rounded-r-2xl h-[100dvh] shadow-2xl 
     bg-[#F8F3F0] dark:bg-black flex flex-col items-center 
@@ -117,14 +110,14 @@ const Nav: React.FC = () => {
           key={link.to}
           to={location.pathname === '/' ? link.to : `/#${link.to}`}
           isScrollLink={location.pathname === '/'}
-          className={linkClass}
+          className={`${underlineAnimation} font-semibold`}
           onClick={isMobile ? toggleMenu : undefined}
         >
           {t(link.text)}
         </NavLink>
       ))}
       <button
-        className={linkClass}
+        className={`${underlineAnimation} font-semibold`}
         onClick={
           isMobile
             ? () => {

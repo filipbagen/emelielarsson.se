@@ -14,8 +14,8 @@ const EditContent = ({
 }) => {
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState<
-    'intro' | 'projects' | 'resume'
-  >('intro');
+    'Intro' | 'Projects' | 'Resume'
+  >('Intro');
 
   useEffect(() => {
     // Only redirect if we're not loading and not authenticated
@@ -26,11 +26,11 @@ const EditContent = ({
 
   const renderEditor = () => {
     switch (activeSection) {
-      case 'intro':
+      case 'Intro':
         return <IntroEditor />;
-      case 'projects':
+      case 'Projects':
         return <ProjectsEditor />;
-      case 'resume':
+      case 'Resume':
         return <ResumeEditor />;
       default:
         return null;

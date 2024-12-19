@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestoreDoc } from '../../hooks/useFirestore.ts';
+import Button from '../Button.tsx';
 
 const IntroEditor = () => {
   const introDoc = useFirestoreDoc('websiteContent', 'intro');
@@ -83,12 +84,9 @@ const IntroEditor = () => {
         ))}
       </div>
 
-      <button
-        onClick={handleSave}
-        className="bg-blue-500 text-white px-8 py-3 rounded-lg hover:bg-blue-600 mt-6"
-      >
+      <Button variant="primary" onClick={handleSave}>
         Save Intro
-      </button>
+      </Button>
     </div>
   );
 };
