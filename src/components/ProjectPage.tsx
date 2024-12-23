@@ -5,7 +5,7 @@ import { useLanguage } from '../context/LanguageContext.tsx';
 import { useFirestoreDoc } from '../hooks/useFirestore.ts';
 import { Project } from '../types/content.ts';
 
-const ProjectPage: React.FC = () => {
+const ProjectPage = () => {
   const { currentLang } = useLanguage();
   const { data, loading, error } = useFirestoreDoc(
     'websiteContent',

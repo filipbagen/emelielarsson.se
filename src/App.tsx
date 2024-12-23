@@ -4,7 +4,6 @@ import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
 import { LanguageProvider } from './context/LanguageContext.tsx';
 import AdminNav from './components/AdminNav.tsx';
-import MainLayout from './components/MainLayout.tsx';
 
 // pages
 import Home from './pages/Home.tsx';

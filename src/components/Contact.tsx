@@ -1,29 +1,20 @@
 import React from 'react';
-import { useTranslation } from 'react-i18next';
 import SectionLayout from '../components/SectionLayout.tsx';
 import Button from '../components/Button.tsx';
+import { useLanguage } from '../context/LanguageContext.tsx';
+import { useFirestoreDoc } from '../hooks/useFirestore.ts';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEnvelope } from '@fortawesome/free-solid-svg-icons';
 import { faLinkedin } from '@fortawesome/free-brands-svg-icons';
 
 const Contact = () => {
-  const { t } = useTranslation();
+  const { currentLang } = useLanguage();
+  const { data, loading, error } = useFirestoreDoc('websiteContent', 'contact');
 
-  // const email = 'emelie00@hotmail.com';
+  if (loading) return <div>Loading...</div>;
+  if (error) return <div>Error: {error.message}</div>;
 
-  // const copyToClipboard = (e) => {
-  //   e.preventDefault(); // Prevent the default anchor action
-  //   navigator.clipboard.writeText(email).then(
-  //     () => {},
-  //     (err) => {
-  //       // Handle any errors
-  //       console.error('Could not copy text: ', err);
-  //     }
-  //   );
-  // };
-
-  // Prepare the content for the section
   const contactCards = (
     <div className="flex flex-col gap-4 items-start">
       <div className="flex flex-col sm:flex-row gap-6">
@@ -48,7 +39,7 @@ const Contact = () => {
       </div>
 
       <Button variant="primary" href="mailto:emelie00@hotmail.com">
-        {t('contact.title')}
+        {data[currentLang].title}
       </Button>
     </div>
   );
@@ -56,8 +47,8 @@ const Contact = () => {
   return (
     <div className="mb-24 sm:mt-64">
       <SectionLayout
-        title={t('contact.title')}
-        description={t('contact.body')}
+        title={data[currentLang].title}
+        description={data[currentLang].description}
         content={contactCards}
       />
     </div>
