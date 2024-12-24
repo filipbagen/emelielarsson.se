@@ -49,7 +49,7 @@ const Contact = () => {
       <div className="mb-24 sm:mt-64">
         <SectionLayout
           title={data[currentLang].title}
-          description={data[currentLang].description}
+          description={data[currentLang].body}
           content={contactCards}
         />
       </div>
