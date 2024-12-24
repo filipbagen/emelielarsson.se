@@ -4,6 +4,7 @@ import SectionSwitcher from '../components/SectionSwitcher.tsx';
 import IntroEditor from '../components/edit/IntroEditor.tsx';
 import ProjectsEditor from '../components/edit/ProjectsEditor.tsx';
 import ResumeEditor from '../components/edit/ResumeEditor.tsx';
+import ContactEditor from '../components/edit/ContactEditor.tsx';
 
 const EditContent = ({
   isAuth,
@@ -30,6 +31,8 @@ const EditContent = ({
         return <ProjectsEditor />;
       case 'Resume':
         return <ResumeEditor />;
+      case 'Contact':
+        return <ContactEditor />;
       default:
         return null;
     }
@@ -43,7 +46,7 @@ const EditContent = ({
   return (
     <div className="mx-auto">
       <SectionSwitcher
-        sections={['Intro', 'Projects', 'Resume']}
+        sections={['Intro', 'Projects', 'Resume', 'Contact']}
         activeSection={activeSection}
         onSwitch={setActiveSection}
       />
