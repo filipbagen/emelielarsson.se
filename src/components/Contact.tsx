@@ -12,7 +12,7 @@ const Contact = () => {
   const { currentLang } = useLanguage();
   const { data, loading, error } = useFirestoreDoc('websiteContent', 'contact');
 
-  if (loading) return <div>Loading...</div>;
+  if (loading) return null;
   if (error) return <div>Error: {error.message}</div>;
 
   const contactCards = (
@@ -44,15 +44,16 @@ const Contact = () => {
     </div>
   );
 
-  return (
-    <div className="mb-24 sm:mt-64">
-      <SectionLayout
-        title={data[currentLang].title}
-        description={data[currentLang].description}
-        content={contactCards}
-      />
-    </div>
-  );
+  if (!loading)
+    return (
+      <div className="mb-24 sm:mt-64">
+        <SectionLayout
+          title={data[currentLang].title}
+          description={data[currentLang].description}
+          content={contactCards}
+        />
+      </div>
+    );
 };
 
 export default Contact;
