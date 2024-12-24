@@ -40,7 +40,7 @@ const IntroEditor = () => {
         {Object.keys(editedData || {}).map((lang) => (
           <div key={lang} className="p-6 rounded-lg shadow-md w-full">
             <h2 className="text-2xl font-semibold mb-4">
-              {lang.toUpperCase()} Section
+              {lang.toUpperCase()} Intro
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">
