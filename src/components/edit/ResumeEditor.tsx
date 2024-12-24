@@ -190,7 +190,7 @@ const ResumeEditor = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded dark:text-black"
                     value={editedData[lang].educationHeader}
                     onChange={(e) =>
                       setEditedData((prev: any) => ({
@@ -220,7 +220,7 @@ const ResumeEditor = () => {
                   (entry: EducationEntry, index: number) => (
                     <div
                       key={index}
-                      className="bg-white border rounded-lg p-6 relative"
+                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
                     >
                       <button
                         type="button"
@@ -234,7 +234,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">University Name:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.universityName}
                             onChange={(e) =>
                               handleEducationChange(
@@ -250,7 +250,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">Degree Level:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.degreeLevel}
                             onChange={(e) =>
                               handleEducationChange(
@@ -266,7 +266,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">Year:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.year}
                             onChange={(e) =>
                               handleEducationChange(
@@ -281,7 +281,7 @@ const ResumeEditor = () => {
                         <div className="col-span-full">
                           <label className="block mb-2">Description:</label>
                           <textarea
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.body}
                             onChange={(e) =>
                               handleEducationChange(
@@ -309,7 +309,7 @@ const ResumeEditor = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded dark:text-black"
                     value={editedData[lang].experienceHeader}
                     onChange={(e) =>
                       setEditedData((prev: any) => ({
@@ -339,7 +339,7 @@ const ResumeEditor = () => {
                   (entry: ExperienceEntry, index: number) => (
                     <div
                       key={index}
-                      className="bg-white border rounded-lg p-6 relative"
+                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
                     >
                       <button
                         type="button"
@@ -353,7 +353,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">Company:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.company}
                             onChange={(e) =>
                               handleExperienceChange(
@@ -369,7 +369,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">Position:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.position}
                             onChange={(e) =>
                               handleExperienceChange(
@@ -385,7 +385,7 @@ const ResumeEditor = () => {
                           <label className="block mb-2">Year:</label>
                           <input
                             type="text"
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.year}
                             onChange={(e) =>
                               handleExperienceChange(
@@ -400,7 +400,7 @@ const ResumeEditor = () => {
                         <div className="col-span-full">
                           <label className="block mb-2">Description:</label>
                           <textarea
-                            className="w-full p-2 border rounded"
+                            className="w-full p-2 border rounded dark:text-black"
                             value={entry.body}
                             onChange={(e) =>
                               handleExperienceChange(
@@ -428,7 +428,7 @@ const ResumeEditor = () => {
                   </label>
                   <input
                     type="text"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded dark:text-black"
                     value={editedData[lang].skillsHeader}
                     onChange={(e) =>
                       setEditedData((prev: any) => ({
@@ -445,7 +445,7 @@ const ResumeEditor = () => {
                   <label className="block mb-2 font-medium">Skills:</label>
                   <input
                     type="text"
-                    className="w-full p-2 border rounded"
+                    className="w-full p-2 border rounded dark:text-black"
                     value={editedData[lang].skills.join(', ')}
                     onChange={(e) =>
                       setEditedData((prev: any) => ({
@@ -468,7 +468,7 @@ const ResumeEditor = () => {
                 </label>
                 <input
                   type="text"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded dark:text-black"
                   value={editedData[lang].resume}
                   onChange={(e) =>
                     setEditedData((prev: any) => ({

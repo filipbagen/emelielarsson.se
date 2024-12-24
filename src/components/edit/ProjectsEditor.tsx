@@ -93,7 +93,7 @@ const ProjectsEditor = () => {
                 <label className="block mb-2 font-medium">Title:</label>
                 <input
                   type="text"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded dark:text-black"
                   value={editedData[lang].title}
                   onChange={(e) =>
                     setEditedData((prev: any) => ({
@@ -109,7 +109,7 @@ const ProjectsEditor = () => {
               <div>
                 <label className="block mb-2 font-medium">Description:</label>
                 <textarea
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded dark:text-black"
                   value={editedData[lang].body}
                   onChange={(e) =>
                     setEditedData((prev: any) => ({
@@ -137,7 +137,7 @@ const ProjectsEditor = () => {
                 (project: Project, projectIndex: number) => (
                   <div
                     key={projectIndex}
-                    className="bg-white border rounded-lg p-6 relative"
+                    className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
                   >
                     <button
                       type="button"
@@ -151,7 +151,7 @@ const ProjectsEditor = () => {
                         <label className="block mb-2">Title:</label>
                         <input
                           type="text"
-                          className="w-full p-2 border rounded"
+                          className="w-full p-2 border rounded dark:text-black"
                           value={project.title}
                           onChange={(e) =>
                             handleProjectChange(
@@ -167,7 +167,7 @@ const ProjectsEditor = () => {
                         <label className="block mb-2">Name:</label>
                         <input
                           type="text"
-                          className="w-full p-2 border rounded"
+                          className="w-full p-2 border rounded dark:text-black"
                           value={project.name}
                           onChange={(e) =>
                             handleProjectChange(
@@ -183,7 +183,7 @@ const ProjectsEditor = () => {
                         <label className="block mb-2">Tags:</label>
                         <input
                           type="text"
-                          className="w-full p-2 border rounded"
+                          className="w-full p-2 border rounded dark:text-black"
                           value={project.tags.join(', ')}
                           onChange={(e) =>
                             handleProjectChange(
@@ -198,7 +198,7 @@ const ProjectsEditor = () => {
                       <div className="col-span-full">
                         <label className="block mb-2">Description:</label>
                         <textarea
-                          className="w-full p-2 border rounded"
+                          className="w-full p-2 border rounded dark:text-black"
                           value={project.description}
                           onChange={(e) =>
                             handleProjectChange(

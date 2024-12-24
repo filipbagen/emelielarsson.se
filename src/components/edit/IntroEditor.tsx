@@ -48,7 +48,7 @@ const IntroEditor = () => {
                 <label className="block mb-2 font-medium">Title:</label>
                 <input
                   type="text"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded dark:text-black"
                   value={editedData[lang].title}
                   onChange={(e) =>
                     handleSectionChange(lang, 'title', e.target.value)
@@ -59,7 +59,7 @@ const IntroEditor = () => {
                 <label className="block mb-2 font-medium">Heading:</label>
                 <input
                   type="text"
-                  className="w-full p-2 border rounded"
+                  className="w-full p-2 border rounded dark:text-black"
                   value={editedData[lang].heading}
                   onChange={(e) =>
                     handleSectionChange(lang, 'heading', e.target.value)
@@ -69,7 +69,7 @@ const IntroEditor = () => {
               <div className="col-span-full">
                 <label className="block mb-2 font-medium">Body:</label>
                 <textarea
-                  className="w-full p-2 border rounded h-40"
+                  className="w-full p-2 border rounded h-40 dark:text-black"
                   value={editedData[lang].body}
                   onChange={(e) =>
                     handleSectionChange(lang, 'body', e.target.value)
