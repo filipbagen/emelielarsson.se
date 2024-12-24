@@ -1,4 +1,4 @@
-import React, { Suspense, useState, useEffect } from 'react';
+import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 import { signOut } from 'firebase/auth';
 import { auth } from './firebase-config.ts';
@@ -37,10 +37,6 @@ const AppContent = () => {
       });
   };
 
-  if (isLoading) {
-    return <div>Loading...</div>;
-  }
-
   // Render different layouts based on route
   if (isAdminRoute && isAuth) {
     return (
@@ -69,13 +65,13 @@ const AppContent = () => {
 
 const App = () => {
   return (
-    <Suspense fallback="loading">
-      <LanguageProvider>
-        <BrowserRouter>
-          <AppContent />
-        </BrowserRouter>
-      </LanguageProvider>
-    </Suspense>
+    // <Suspense fallback="loading">
+    <LanguageProvider>
+      <BrowserRouter>
+        <AppContent />
+      </BrowserRouter>
+    </LanguageProvider>
+    // </Suspense>
   );
 };
 

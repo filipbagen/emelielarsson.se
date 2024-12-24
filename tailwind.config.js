@@ -2,16 +2,15 @@
 module.exports = {
   content: ['./src/**/*.{js,jsx,ts,tsx}'],
   theme: {
-    colors: {
-      primary: '#E4DACF',
-      secondary: '#D3AAAA',
-      white: '#ffffff',
-      black: '#343434',
-
-      primaryDark: '#1f1f1f',
-      secondaryDark: '#181818',
-    },
     extend: {
+      colors: {
+        primary: '#E4DACF',
+        secondary: '#D3AAAA',
+        white: '#ffffff',
+        black: '#343434',
+        primaryDark: '#1f1f1f',
+        secondaryDark: '#181818',
+      },
       fontFamily: {
         sans: ['"Wix Madefor Text"', 'sans-serif'],
         body: ['"Lato"', 'sans-serif'],
