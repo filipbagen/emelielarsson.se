@@ -16,6 +16,9 @@ const EditContent = ({
   const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState('Intro' as string);
 
+  console.log('isAuth:', isAuth);
+  console.log('isLoading:', isLoading);
+
   useEffect(() => {
     // Only redirect if we're not loading and not authenticated
     if (!isLoading && !isAuth) {

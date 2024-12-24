@@ -11,6 +11,7 @@ import ResumePage from './pages/ResumePage.tsx';
 import Login from './pages/Login.tsx';
 import EditContent from './pages/EditContent.tsx';
 
+// In App.tsx
 const AppContent = () => {
   const [isAuth, setIsAuth] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
@@ -37,7 +38,7 @@ const AppContent = () => {
       });
   };
 
-  // Render different layouts based on route
+  // Render admin layout if authenticated and on admin route
   if (isAdminRoute && isAuth) {
     return (
       <div className="flex flex-col items-center w-screen min-h-screen">
@@ -59,6 +60,11 @@ const AppContent = () => {
       <Route path="/" element={<Home />} />
       <Route path="resume" element={<ResumePage />} />
       <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+      {/* Add the edit route here as well */}
+      <Route
+        path="/edit"
+        element={<EditContent isAuth={isAuth} isLoading={isLoading} />}
+      />
     </Routes>
   );
 };
