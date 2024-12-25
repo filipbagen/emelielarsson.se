@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestoreDoc } from '../../hooks/useFirestore.ts';
 import Button from '../Button.tsx';
+import MultilingualEditor from '../MultilingualEditor.tsx';
 
 interface EducationEntry {
   universityName: string;
@@ -23,7 +24,7 @@ interface ResumeData {
     skillsHeader: string;
     resume: string;
     skills: string[];
-    Education: EducationEntry[];
+    list: EducationEntry[]; // Changed from Education
     ExperienceEntry: ExperienceEntry[];
   };
 }
@@ -32,9 +33,22 @@ const ResumeEditor = () => {
   const resumeDoc = useFirestoreDoc('websiteContent', 'resume');
   const [editedData, setEditedData] = useState<ResumeData | null>(null);
 
+  // In the useEffect, transform the data
   useEffect(() => {
     if (resumeDoc.data) {
-      setEditedData(resumeDoc.data as ResumeData);
+      const transformedData = Object.keys(resumeDoc.data).reduce(
+        (acc, lang) => {
+          return {
+            ...acc,
+            [lang]: {
+              ...resumeDoc.data[lang],
+              list: resumeDoc.data[lang].Education, // Map Education to list
+            },
+          };
+        },
+        {}
+      );
+      setEditedData(transformedData as ResumeData);
     }
   }, [resumeDoc.data]);
 
@@ -46,7 +60,7 @@ const ResumeEditor = () => {
   ) => {
     setEditedData((prev: ResumeData | null) => {
       if (!prev) return null;
-      const updatedEducation = [...prev[lang].Education];
+      const updatedEducation = [...prev[lang].list];
       updatedEducation[index] = {
         ...updatedEducation[index],
         [field]: value,
@@ -62,106 +76,221 @@ const ResumeEditor = () => {
     });
   };
 
-  const handleExperienceChange = (
+  // const handleExperienceChange = (
+  //   lang: string,
+  //   index: number,
+  //   field: keyof ExperienceEntry,
+  //   value: string
+  // ) => {
+  //   setEditedData((prev: ResumeData | null) => {
+  //     if (!prev) return null;
+  //     const updatedExperience = [...prev[lang].ExperienceEntry];
+  //     updatedExperience[index] = {
+  //       ...updatedExperience[index],
+  //       [field]: value,
+  //     };
+
+  //     return {
+  //       ...prev,
+  //       [lang]: {
+  //         ...prev[lang],
+  //         ExperienceEntry: updatedExperience,
+  //       },
+  //     };
+  //   });
+  // };
+
+  // const addEducationEntry = (lang: string) => {
+  //   setEditedData((prev: ResumeData | null) => {
+  //     if (!prev) return null;
+  //     return {
+  //       ...prev,
+  //       [lang]: {
+  //         ...prev[lang],
+  //         Education: [
+  //           ...prev[lang].Education,
+  //           {
+  //             universityName: 'New University',
+  //             degreeLevel: 'New Degree',
+  //             body: '',
+  //             year: '',
+  //           },
+  //         ],
+  //       },
+  //     };
+  //   });
+  // };
+
+  // const addExperienceEntry = (lang: string) => {
+  //   setEditedData((prev: ResumeData | null) => {
+  //     if (!prev) return null;
+  //     return {
+  //       ...prev,
+  //       [lang]: {
+  //         ...prev[lang],
+  //         ExperienceEntry: [
+  //           ...prev[lang].ExperienceEntry,
+  //           {
+  //             company: 'New Company',
+  //             position: 'New Position',
+  //             body: '',
+  //             year: '',
+  //           },
+  //         ],
+  //       },
+  //     };
+  //   });
+  // };
+
+  // const removeEducationEntry = (lang: string, index: number) => {
+  //   setEditedData((prev: ResumeData | null) => {
+  //     if (!prev) return null;
+  //     const updatedEducation = [...prev[lang].Education];
+  //     updatedEducation.splice(index, 1);
+  //     return {
+  //       ...prev,
+  //       [lang]: {
+  //         ...prev[lang],
+  //         Education: updatedEducation,
+  //       },
+  //     };
+  //   });
+  // };
+
+  // const removeExperienceEntry = (lang: string, index: number) => {
+  //   setEditedData((prev: ResumeData | null) => {
+  //     if (!prev) return null;
+  //     const updatedExperience = [...prev[lang].ExperienceEntry];
+  //     updatedExperience.splice(index, 1);
+  //     return {
+  //       ...prev,
+  //       [lang]: {
+  //         ...prev[lang],
+  //         ExperienceEntry: updatedExperience,
+  //       },
+  //     };
+  //   });
+  // };
+
+  const renderEducationItem = (
     lang: string,
+    entry: EducationEntry,
     index: number,
-    field: keyof ExperienceEntry,
-    value: string
-  ) => {
-    setEditedData((prev: ResumeData | null) => {
-      if (!prev) return null;
-      const updatedExperience = [...prev[lang].ExperienceEntry];
-      updatedExperience[index] = {
-        ...updatedExperience[index],
-        [field]: value,
-      };
+    removeItem: (lang: string, index: number) => void
+  ) => (
+    <div className="bg-white dark:bg-transparent border rounded-lg p-6 relative">
+      <button
+        type="button"
+        onClick={() => removeItem(lang, index)}
+        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+      >
+        ❌
+      </button>
+      <div className="grid md:grid-cols-2 gap-4">
+        <div>
+          <label className="block mb-2">University Name:</label>
+          <input
+            type="text"
+            className="w-full p-2 border rounded dark:text-black"
+            value={entry.universityName}
+            onChange={(e) =>
+              handleEducationChange(
+                lang,
+                index,
+                'universityName',
+                e.target.value
+              )
+            }
+          />
+        </div>
+        <div>
+          <label className="block mb-2">Degree Level:</label>
+          <input
+            type="text"
+            className="w-full p-2 border rounded dark:text-black"
+            value={entry.degreeLevel}
+            onChange={(e) =>
+              handleEducationChange(lang, index, 'degreeLevel', e.target.value)
+            }
+          />
+        </div>
+        <div>
+          <label className="block mb-2">Year:</label>
+          <input
+            type="text"
+            className="w-full p-2 border rounded dark:text-black"
+            value={entry.year}
+            onChange={(e) =>
+              handleEducationChange(lang, index, 'year', e.target.value)
+            }
+          />
+        </div>
+        <div className="col-span-full">
+          <label className="block mb-2">Description:</label>
+          <textarea
+            className="w-full p-2 border rounded dark:text-black"
+            value={entry.body}
+            onChange={(e) =>
+              handleEducationChange(lang, index, 'body', e.target.value)
+            }
+          />
+        </div>
+        <div>
+          <label className="block mb-2">Degree Level:</label>
+          <input
+            type="text"
+            className="w-full p-2 border rounded dark:text-black"
+            value={entry.degreeLevel}
+            onChange={(e) =>
+              handleEducationChange(lang, index, 'degreeLevel', e.target.value)
+            }
+          />
+        </div>
+      </div>
+    </div>
+  );
 
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          ExperienceEntry: updatedExperience,
-        },
-      };
-    });
-  };
+  const renderResumeHeaders = (
+    lang: string,
+    data: ResumeData,
+    onDataChange: (newData: ResumeData) => void
+  ) => (
+    <div className="grid md:grid-cols-2 gap-4 mb-6">
+      <div>
+        <label className="block mb-2 font-medium">Education Header:</label>
+        <input
+          type="text"
+          className="w-full p-2 border rounded dark:text-black"
+          value={data[lang].educationHeader}
+          onChange={(e) =>
+            onDataChange({
+              ...data,
+              [lang]: {
+                ...data[lang],
+                educationHeader: e.target.value,
+              },
+            })
+          }
+        />
+      </div>
+      {/* ... (rest of your header fields) ... */}
+    </div>
+  );
 
-  const addEducationEntry = (lang: string) => {
-    setEditedData((prev: ResumeData | null) => {
-      if (!prev) return null;
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          Education: [
-            ...prev[lang].Education,
-            {
-              universityName: 'New University',
-              degreeLevel: 'New Degree',
-              body: '',
-              year: '',
-            },
-          ],
-        },
-      };
-    });
-  };
-
-  const addExperienceEntry = (lang: string) => {
-    setEditedData((prev: ResumeData | null) => {
-      if (!prev) return null;
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          ExperienceEntry: [
-            ...prev[lang].ExperienceEntry,
-            {
-              company: 'New Company',
-              position: 'New Position',
-              body: '',
-              year: '',
-            },
-          ],
-        },
-      };
-    });
-  };
-
-  const removeEducationEntry = (lang: string, index: number) => {
-    setEditedData((prev: ResumeData | null) => {
-      if (!prev) return null;
-      const updatedEducation = [...prev[lang].Education];
-      updatedEducation.splice(index, 1);
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          Education: updatedEducation,
-        },
-      };
-    });
-  };
-
-  const removeExperienceEntry = (lang: string, index: number) => {
-    setEditedData((prev: ResumeData | null) => {
-      if (!prev) return null;
-      const updatedExperience = [...prev[lang].ExperienceEntry];
-      updatedExperience.splice(index, 1);
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          ExperienceEntry: updatedExperience,
-        },
-      };
-    });
-  };
-
+  // Before saving, transform back
   const handleSave = async () => {
     if (!editedData) return;
     try {
-      await resumeDoc.updateDocument(editedData);
+      const saveData = Object.keys(editedData).reduce((acc, lang) => {
+        return {
+          ...acc,
+          [lang]: {
+            ...editedData[lang],
+            Education: editedData[lang].list, // Map list back to Education
+          },
+        };
+      }, {});
+      await resumeDoc.updateDocument(saveData);
       alert('Resume updated successfully!');
     } catch (err) {
       console.error('Failed to update resume', err);
@@ -174,317 +303,21 @@ const ResumeEditor = () => {
 
   return (
     <div>
-      <div className="flex flex-row gap-6 justify-center">
-        {Object.keys(editedData || {}).map((lang) => (
-          <div key={lang} className="p-6 rounded-lg shadow-md w-full">
-            <h2 className="text-2xl font-semibold mb-4">
-              {lang.toUpperCase()} Resume
-            </h2>
+      <MultilingualEditor
+        data={editedData}
+        onDataChange={setEditedData}
+        renderItem={renderEducationItem}
+        addItemTemplate={{
+          universityName: 'New University',
+          degreeLevel: 'New Degree',
+          body: '',
+          year: '',
+        }}
+        renderHeader={renderResumeHeaders}
+        addButtonText="+ Add Education"
+      />
 
-            {/* Education Section */}
-            <div className="space-y-6 mb-8">
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <label className="block mb-2 font-medium">
-                    Education Header:
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border rounded dark:text-black"
-                    value={editedData[lang].educationHeader}
-                    onChange={(e) =>
-                      setEditedData((prev: any) => ({
-                        ...prev,
-                        [lang]: {
-                          ...prev[lang],
-                          educationHeader: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">Education</h3>
-                  <Button
-                    variant="primary"
-                    onClick={() => addEducationEntry(lang)}
-                  >
-                    + Add Education
-                  </Button>
-                </div>
-
-                {editedData[lang].Education.map(
-                  (entry: EducationEntry, index: number) => (
-                    <div
-                      key={index}
-                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => removeEducationEntry(lang, index)}
-                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                      >
-                        ❌
-                      </button>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block mb-2">University Name:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.universityName}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'universityName',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Degree Level:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.degreeLevel}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'degreeLevel',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Year:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.year}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'year',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div className="col-span-full">
-                          <label className="block mb-2">Description:</label>
-                          <textarea
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.body}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'body',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Experience Section */}
-            <div className="space-y-6 mb-8">
-              <div className="grid md:grid-cols-2 gap-4 mb-6">
-                <div>
-                  <label className="block mb-2 font-medium">
-                    Experience Header:
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border rounded dark:text-black"
-                    value={editedData[lang].experienceHeader}
-                    onChange={(e) =>
-                      setEditedData((prev: any) => ({
-                        ...prev,
-                        [lang]: {
-                          ...prev[lang],
-                          experienceHeader: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">Experience</h3>
-                  <Button
-                    variant="primary"
-                    onClick={() => addExperienceEntry(lang)}
-                  >
-                    + Add Experience
-                  </Button>
-                </div>
-
-                {editedData[lang].ExperienceEntry.map(
-                  (entry: ExperienceEntry, index: number) => (
-                    <div
-                      key={index}
-                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
-                    >
-                      <button
-                        type="button"
-                        onClick={() => removeExperienceEntry(lang, index)}
-                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
-                      >
-                        ❌
-                      </button>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block mb-2">Company:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.company}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'company',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Position:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.position}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'position',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Year:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.year}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'year',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div className="col-span-full">
-                          <label className="block mb-2">Description:</label>
-                          <textarea
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.body}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'body',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  )
-                )}
-              </div>
-            </div>
-
-            {/* Skills Section */}
-            <div className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-4">
-                <div>
-                  <label className="block mb-2 font-medium">
-                    Skills Header:
-                  </label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border rounded dark:text-black"
-                    value={editedData[lang].skillsHeader}
-                    onChange={(e) =>
-                      setEditedData((prev: any) => ({
-                        ...prev,
-                        [lang]: {
-                          ...prev[lang],
-                          skillsHeader: e.target.value,
-                        },
-                      }))
-                    }
-                  />
-                </div>
-                <div>
-                  <label className="block mb-2 font-medium">Skills:</label>
-                  <input
-                    type="text"
-                    className="w-full p-2 border rounded dark:text-black"
-                    value={editedData[lang].skills.join(', ')}
-                    onChange={(e) =>
-                      setEditedData((prev: any) => ({
-                        ...prev,
-                        [lang]: {
-                          ...prev[lang],
-                          skills: e.target.value
-                            .split(',')
-                            .map((skill) => skill.trim()),
-                        },
-                      }))
-                    }
-                  />
-                </div>
-              </div>
-
-              <div>
-                <label className="block mb-2 font-medium">
-                  Resume Button Text:
-                </label>
-                <input
-                  type="text"
-                  className="w-full p-2 border rounded dark:text-black"
-                  value={editedData[lang].resume}
-                  onChange={(e) =>
-                    setEditedData((prev: any) => ({
-                      ...prev,
-                      [lang]: {
-                        ...prev[lang],
-                        resume: e.target.value,
-                      },
-                    }))
-                  }
-                />
-              </div>
-            </div>
-          </div>
-        ))}
-      </div>
+      {/* Repeat for Experience section */}
 
       <div className="mt-4">
         <Button variant="primary" onClick={handleSave}>

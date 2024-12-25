@@ -1,12 +1,10 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { Link as ScrollLink } from 'react-scroll';
-import { useTranslation } from 'react-i18next';
 import { FaBars, FaTimes } from 'react-icons/fa';
 import { useLanguage } from '../context/LanguageContext.tsx';
 import { underlineAnimation } from './styles/animation.ts';
 
-// Define proper types for props and links
 interface NavLinkProps {
   to: string;
   isScrollLink?: boolean;
@@ -17,7 +15,8 @@ interface NavLinkProps {
 
 interface NavLinkType {
   to: string;
-  text: string;
+  textEn: string;
+  textSv: string;
 }
 
 const NavLink: React.FC<NavLinkProps> = ({
@@ -36,7 +35,7 @@ const NavLink: React.FC<NavLinkProps> = ({
           smooth: true,
           offset: -50,
           duration: 500,
-          spy: true, // Add spy for active state tracking
+          spy: true,
         }
       : {};
 
@@ -53,35 +52,17 @@ const NavLink: React.FC<NavLinkProps> = ({
 };
 
 const Nav: React.FC = () => {
-  const { i18n, t } = useTranslation();
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
   const [isAnimating, setIsAnimating] = useState(false);
   const { currentLang, setCurrentLang } = useLanguage();
 
-  // Extract links configuration
   const links: NavLinkType[] = [
-    { to: '/', text: 'nav.home' },
-    { to: 'project', text: 'nav.project' },
-    { to: '/resume', text: 'nav.resume' },
-    { to: 'contact', text: 'nav.contact' },
+    { to: '/', textEn: 'Home', textSv: 'Hem' },
+    { to: 'project', textEn: 'Projects', textSv: 'Uppdrag' },
+    { to: '/resume', textEn: 'Resume', textSv: 'CV' },
+    { to: 'contact', textEn: 'Contact', textSv: 'Kontakt' },
   ];
-
-  useEffect(() => {
-    i18n.changeLanguage(currentLang);
-  }, [currentLang, i18n]);
-
-  useEffect(() => {
-    // Cleanup function to prevent memory leaks
-    const menuBackground = document.querySelector('.menu-background');
-    const handleClick = () => menuBackground?.classList.toggle('active');
-
-    menuBackground?.addEventListener('click', handleClick);
-
-    return () => {
-      menuBackground?.removeEventListener('click', handleClick);
-    };
-  }, []);
 
   const toggleLanguage = () => {
     setCurrentLang((prev) => (prev === 'en' ? 'sv' : 'en'));
@@ -95,7 +76,6 @@ const Nav: React.FC = () => {
     setTimeout(() => setIsAnimating(false), 300);
   };
 
-  // Extract styles to constants
   const mobileMenuClass = `
     w-[300px] rounded-r-2xl h-[100dvh] shadow-2xl 
     bg-[#F8F3F0] dark:bg-black flex flex-col items-center 
@@ -113,7 +93,7 @@ const Nav: React.FC = () => {
           className={`${underlineAnimation} font-semibold`}
           onClick={isMobile ? toggleMenu : undefined}
         >
-          {t(link.text)}
+          {currentLang === 'en' ? link.textEn : link.textSv}
         </NavLink>
       ))}
       <button

@@ -1,18 +1,18 @@
 import React, { createContext, useState, useContext, ReactNode } from 'react';
 
-interface LanguageContextProps {
+interface LanguageContextType {
   currentLang: string;
-  setCurrentLang: (lang: string) => void;
+  setCurrentLang: React.Dispatch<React.SetStateAction<string>>;
 }
 
-const LanguageContext = createContext<LanguageContextProps | undefined>(
+const LanguageContext = createContext<LanguageContextType | undefined>(
   undefined
 );
 
-export const LanguageProvider: React.FC<{ children: ReactNode }> = ({
+export const LanguageProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [currentLang, setCurrentLang] = useState('en');
+  const [currentLang, setCurrentLang] = useState<string>('en');
 
   return (
     <LanguageContext.Provider value={{ currentLang, setCurrentLang }}>
