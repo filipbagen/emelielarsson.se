@@ -63,6 +63,19 @@ const ProjectsEditor = () => {
             }}
           />
         </div>
+        
+        <div className="col-span-full">
+          <label className="block mb-2">Description:</label>
+          <textarea
+            className="w-full p-2 border rounded dark:text-black"
+            value={project.description}
+            onChange={(e) => {
+              const updatedData = { ...editedData! };
+              updatedData[lang].list[index].description = e.target.value;
+              setEditedData(updatedData);
+            }}
+          />
+        </div>
         <div className="col-span-full">
           <label className="block mb-2">Tags:</label>
           <input
@@ -74,18 +87,6 @@ const ProjectsEditor = () => {
               updatedData[lang].list[index].tags = e.target.value
                 .split(',')
                 .map((tag) => tag.trim());
-              setEditedData(updatedData);
-            }}
-          />
-        </div>
-        <div className="col-span-full">
-          <label className="block mb-2">Description:</label>
-          <textarea
-            className="w-full p-2 border rounded dark:text-black"
-            value={project.description}
-            onChange={(e) => {
-              const updatedData = { ...editedData! };
-              updatedData[lang].list[index].description = e.target.value;
               setEditedData(updatedData);
             }}
           />
