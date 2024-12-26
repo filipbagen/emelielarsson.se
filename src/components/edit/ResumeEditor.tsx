@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useFirestoreDoc } from '../../hooks/useFirestore.ts';
 import Button from '../Button.tsx';
+import { DragDropContext, Droppable, Draggable } from 'react-beautiful-dnd';
 
 interface EducationEntry {
   universityName: string;
@@ -89,72 +90,137 @@ const ResumeEditor = () => {
   const addEducationEntry = (lang: string) => {
     setEditedData((prev: ResumeData | null) => {
       if (!prev) return null;
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          Education: [
-            ...prev[lang].Education,
-            {
-              universityName: 'New University',
-              degreeLevel: 'New Degree',
-              body: '',
-              year: '',
-            },
-          ],
-        },
+      const newEducation = {
+        universityName: 'New University',
+        degreeLevel: 'New Degree',
+        body: '',
+        year: '',
       };
+
+      // Add the education entry to all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        updatedData[language] = {
+          ...updatedData[language],
+          Education: [...updatedData[language].Education, { ...newEducation }],
+        };
+      });
+
+      return updatedData;
     });
   };
 
   const addExperienceEntry = (lang: string) => {
     setEditedData((prev: ResumeData | null) => {
       if (!prev) return null;
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
-          ExperienceEntry: [
-            ...prev[lang].ExperienceEntry,
-            {
-              company: 'New Company',
-              position: 'New Position',
-              body: '',
-              year: '',
-            },
-          ],
-        },
+      const newExperience = {
+        company: 'New Company',
+        position: 'New Position',
+        body: '',
+        year: '',
       };
+
+      // Add the experience entry to all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        updatedData[language] = {
+          ...updatedData[language],
+          ExperienceEntry: [
+            ...updatedData[language].ExperienceEntry,
+            { ...newExperience },
+          ],
+        };
+      });
+
+      return updatedData;
     });
   };
 
   const removeEducationEntry = (lang: string, index: number) => {
     setEditedData((prev: ResumeData | null) => {
       if (!prev) return null;
-      const updatedEducation = [...prev[lang].Education];
-      updatedEducation.splice(index, 1);
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
+
+      // Remove the education entry from all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        const updatedEducation = [...updatedData[language].Education];
+        updatedEducation.splice(index, 1);
+        updatedData[language] = {
+          ...updatedData[language],
           Education: updatedEducation,
-        },
-      };
+        };
+      });
+
+      return updatedData;
     });
   };
 
   const removeExperienceEntry = (lang: string, index: number) => {
     setEditedData((prev: ResumeData | null) => {
       if (!prev) return null;
-      const updatedExperience = [...prev[lang].ExperienceEntry];
-      updatedExperience.splice(index, 1);
-      return {
-        ...prev,
-        [lang]: {
-          ...prev[lang],
+
+      // Remove the experience entry from all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        const updatedExperience = [...updatedData[language].ExperienceEntry];
+        updatedExperience.splice(index, 1);
+        updatedData[language] = {
+          ...updatedData[language],
           ExperienceEntry: updatedExperience,
-        },
-      };
+        };
+      });
+
+      return updatedData;
+    });
+  };
+
+  const handleEducationDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    setEditedData((prev: ResumeData | null) => {
+      if (!prev) return null;
+
+      // Reorder education entries in all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        const updatedEducation = [...updatedData[language].Education];
+        const [reorderedItem] = updatedEducation.splice(sourceIndex, 1);
+        updatedEducation.splice(destinationIndex, 0, reorderedItem);
+        updatedData[language] = {
+          ...updatedData[language],
+          Education: updatedEducation,
+        };
+      });
+
+      return updatedData;
+    });
+  };
+
+  const handleExperienceDragEnd = (result: any) => {
+    if (!result.destination) return;
+
+    const sourceIndex = result.source.index;
+    const destinationIndex = result.destination.index;
+
+    setEditedData((prev: ResumeData | null) => {
+      if (!prev) return null;
+
+      // Reorder experience entries in all languages
+      const updatedData = { ...prev };
+      Object.keys(updatedData).forEach((language) => {
+        const updatedExperience = [...updatedData[language].ExperienceEntry];
+        const [reorderedItem] = updatedExperience.splice(sourceIndex, 1);
+        updatedExperience.splice(destinationIndex, 0, reorderedItem);
+        updatedData[language] = {
+          ...updatedData[language],
+          ExperienceEntry: updatedExperience,
+        };
+      });
+
+      return updatedData;
     });
   };
 
@@ -205,99 +271,132 @@ const ResumeEditor = () => {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">Education</h3>
-                  <Button
-                    variant="primary"
-                    onClick={() => addEducationEntry(lang)}
-                  >
-                    + Add Education
-                  </Button>
-                </div>
-
-                {editedData[lang].Education.map(
-                  (entry: EducationEntry, index: number) => (
-                    <div
-                      key={index}
-                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
+              <DragDropContext onDragEnd={handleEducationDragEnd}>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-semibold">Education</h3>
+                    <Button
+                      variant="primary"
+                      onClick={() => addEducationEntry(lang)}
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeEducationEntry(lang, index)}
-                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                      + Add Education
+                    </Button>
+                  </div>
+
+                  <Droppable droppableId={`education-${lang}`}>
+                    {(provided) => (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className="space-y-4"
                       >
-                        ❌
-                      </button>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block mb-2">University Name:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.universityName}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'universityName',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Degree Level:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.degreeLevel}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'degreeLevel',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Year:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.year}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'year',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div className="col-span-full">
-                          <label className="block mb-2">Description:</label>
-                          <textarea
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.body}
-                            onChange={(e) =>
-                              handleEducationChange(
-                                lang,
-                                index,
-                                'body',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
+                        {editedData[lang].Education.map(
+                          (entry: EducationEntry, index: number) => (
+                            <Draggable
+                              key={index}
+                              draggableId={`${lang}-education-${index}`}
+                              index={index}
+                            >
+                              {(provided) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
+                                >
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      removeEducationEntry(lang, index)
+                                    }
+                                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                  >
+                                    ❌
+                                  </button>
+                                  <div className="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                      <label className="block mb-2">
+                                        University Name:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.universityName}
+                                        onChange={(e) =>
+                                          handleEducationChange(
+                                            lang,
+                                            index,
+                                            'universityName',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div>
+                                      <label className="block mb-2">
+                                        Degree Level:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.degreeLevel}
+                                        onChange={(e) =>
+                                          handleEducationChange(
+                                            lang,
+                                            index,
+                                            'degreeLevel',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div>
+                                      <label className="block mb-2">
+                                        Year:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.year}
+                                        onChange={(e) =>
+                                          handleEducationChange(
+                                            lang,
+                                            index,
+                                            'year',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div className="col-span-full">
+                                      <label className="block mb-2">
+                                        Description:
+                                      </label>
+                                      <textarea
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.body}
+                                        onChange={(e) =>
+                                          handleEducationChange(
+                                            lang,
+                                            index,
+                                            'body',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </Draggable>
+                          )
+                        )}
+                        {provided.placeholder}
                       </div>
-                    </div>
-                  )
-                )}
-              </div>
+                    )}
+                  </Droppable>
+                </div>
+              </DragDropContext>
             </div>
 
             {/* Experience Section */}
@@ -324,99 +423,132 @@ const ResumeEditor = () => {
                 </div>
               </div>
 
-              <div className="space-y-6">
-                <div className="flex justify-between items-center">
-                  <h3 className="text-xl font-semibold">Experience</h3>
-                  <Button
-                    variant="primary"
-                    onClick={() => addExperienceEntry(lang)}
-                  >
-                    + Add Experience
-                  </Button>
-                </div>
-
-                {editedData[lang].ExperienceEntry.map(
-                  (entry: ExperienceEntry, index: number) => (
-                    <div
-                      key={index}
-                      className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
+              <DragDropContext onDragEnd={handleExperienceDragEnd}>
+                <div className="space-y-6">
+                  <div className="flex justify-between items-center">
+                    <h3 className="text-xl font-semibold">Experience</h3>
+                    <Button
+                      variant="primary"
+                      onClick={() => addExperienceEntry(lang)}
                     >
-                      <button
-                        type="button"
-                        onClick={() => removeExperienceEntry(lang, index)}
-                        className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                      + Add Experience
+                    </Button>
+                  </div>
+
+                  <Droppable droppableId={`experience-${lang}`}>
+                    {(provided) => (
+                      <div
+                        {...provided.droppableProps}
+                        ref={provided.innerRef}
+                        className="space-y-4"
                       >
-                        ❌
-                      </button>
-                      <div className="grid md:grid-cols-2 gap-4">
-                        <div>
-                          <label className="block mb-2">Company:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.company}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'company',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Position:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.position}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'position',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div>
-                          <label className="block mb-2">Year:</label>
-                          <input
-                            type="text"
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.year}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'year',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
-                        <div className="col-span-full">
-                          <label className="block mb-2">Description:</label>
-                          <textarea
-                            className="w-full p-2 border rounded dark:text-black"
-                            value={entry.body}
-                            onChange={(e) =>
-                              handleExperienceChange(
-                                lang,
-                                index,
-                                'body',
-                                e.target.value
-                              )
-                            }
-                          />
-                        </div>
+                        {editedData[lang].ExperienceEntry.map(
+                          (entry: ExperienceEntry, index: number) => (
+                            <Draggable
+                              key={index}
+                              draggableId={`${lang}-experience-${index}`}
+                              index={index}
+                            >
+                              {(provided) => (
+                                <div
+                                  ref={provided.innerRef}
+                                  {...provided.draggableProps}
+                                  {...provided.dragHandleProps}
+                                  className="bg-white dark:bg-transparent border rounded-lg p-6 relative"
+                                >
+                                  <button
+                                    type="button"
+                                    onClick={() =>
+                                      removeExperienceEntry(lang, index)
+                                    }
+                                    className="absolute top-2 right-2 text-red-500 hover:text-red-700"
+                                  >
+                                    ❌
+                                  </button>
+                                  <div className="grid md:grid-cols-2 gap-4">
+                                    <div>
+                                      <label className="block mb-2">
+                                        Company:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.company}
+                                        onChange={(e) =>
+                                          handleExperienceChange(
+                                            lang,
+                                            index,
+                                            'company',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div>
+                                      <label className="block mb-2">
+                                        Position:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.position}
+                                        onChange={(e) =>
+                                          handleExperienceChange(
+                                            lang,
+                                            index,
+                                            'position',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div>
+                                      <label className="block mb-2">
+                                        Year:
+                                      </label>
+                                      <input
+                                        type="text"
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.year}
+                                        onChange={(e) =>
+                                          handleExperienceChange(
+                                            lang,
+                                            index,
+                                            'year',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                    <div className="col-span-full">
+                                      <label className="block mb-2">
+                                        Description:
+                                      </label>
+                                      <textarea
+                                        className="w-full p-2 border rounded dark:text-black"
+                                        value={entry.body}
+                                        onChange={(e) =>
+                                          handleExperienceChange(
+                                            lang,
+                                            index,
+                                            'body',
+                                            e.target.value
+                                          )
+                                        }
+                                      />
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </Draggable>
+                          )
+                        )}
+                        {provided.placeholder}
                       </div>
-                    </div>
-                  )
-                )}
-              </div>
+                    )}
+                  </Droppable>
+                </div>
+              </DragDropContext>
             </div>
 
             {/* Skills Section */}
