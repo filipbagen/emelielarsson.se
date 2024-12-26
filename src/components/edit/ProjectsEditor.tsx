@@ -228,22 +228,6 @@ const ProjectsEditor = () => {
                                     />
                                   </div>
                                   <div className="col-span-full">
-                                    <label className="block mb-2">Tags:</label>
-                                    <input
-                                      type="text"
-                                      className="w-full p-2 border rounded dark:text-black"
-                                      value={project.tags.join(', ')}
-                                      onChange={(e) =>
-                                        handleProjectChange(
-                                          lang,
-                                          projectIndex,
-                                          'tags',
-                                          e.target.value
-                                        )
-                                      }
-                                    />
-                                  </div>
-                                  <div className="col-span-full">
                                     <label className="block mb-2">
                                       Description:
                                     </label>
@@ -255,6 +239,22 @@ const ProjectsEditor = () => {
                                           lang,
                                           projectIndex,
                                           'description',
+                                          e.target.value
+                                        )
+                                      }
+                                    />
+                                  </div>
+                                  <div className="col-span-full">
+                                    <label className="block mb-2">Tags:</label>
+                                    <input
+                                      type="text"
+                                      className="w-full p-2 border rounded dark:text-black"
+                                      value={project.tags.join(', ')}
+                                      onChange={(e) =>
+                                        handleProjectChange(
+                                          lang,
+                                          projectIndex,
+                                          'tags',
                                           e.target.value
                                         )
                                       }
