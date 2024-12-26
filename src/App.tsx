@@ -59,10 +59,10 @@ const AppContent = () => {
     <Routes>
       <Route path="/" element={<Home />} />
       <Route path="resume" element={<ResumePage />} />
-      <Route path="/login" element={<Login setIsAuth={setIsAuth} />} />
+      <Route path="login" element={<Login setIsAuth={setIsAuth} />} />
       {/* Add the edit route here as well */}
       <Route
-        path="/edit"
+        path="edit"
         element={<EditContent isAuth={isAuth} isLoading={isLoading} />}
       />
     </Routes>
